@@ -1,16 +1,18 @@
 package com.passengertransportation.demo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.sun.istack.NotNull;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -41,8 +43,8 @@ public class Route {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets = new HashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "buss_id", referencedColumnName = "buss_id")
+    @NotNull
+    @Embedded
     private Buss buss;
 
 }
