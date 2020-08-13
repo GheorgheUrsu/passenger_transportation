@@ -1,1 +1,1 @@
---INSERT INTO routes(start_loc, arrival_loc,start_date, arrival_date)values ("Chisinau", "Berlin", 2019/09/09, 2019/09/10 );
+#INSERT INTO routes(arrival_date, arrival_loc, start_date,start_loc)values ((2020,9,10,22,00), 'Bucharest', (2020,9,10,21,00), 'Chisianu' );

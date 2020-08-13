@@ -1,43 +1,26 @@
---create table hibernate_sequence(
---       next_val bigint
---   )
---
---create table busses (
---        buss_id bigint not null,
---        buss_type varchar(255),
---        last_inspection datetime(6),
---        buss_reg_nb varchar(255),
---        primary key (buss_id)
---    )
---
---create table routes (
---         route_id bigint not null auto_increment,
---        arrival_date datetime(6),
---        arrival_loc varchar(255),
---        start_date datetime(6),
---        start_loc varchar(255),
---        buss_id bigint,
---        primary key (route_id)
---    )
---
--- create table tickets (
---       tickets_id bigint not null,
---        birth_date datetime(6),
---        luggage_weight integer not null,
---        name varchar(255),
---        passport_data varchar(255),
---        ticket_price integer,
---        type varchar(255),
---        route_id bigint,
---        primary key (tickets_id)
---    )
---
---alter table routes
---       add constraint FKw52g2j3ttw9qvt96hdolsnwb
---       foreign key (buss_id)
---       references busses (buss_id)
---
---alter table tickets
---       add constraint FKjndmi4mev27gnbw3m61y1hb8q
---       foreign key (route_id)
---       references routes (route_id)
+ create table routes (
+        route_id            bigint              not null auto_increment primary key,
+        arrival_date        datetime,
+        arrival_loc         varchar(255),
+        buss_type           varchar(255),
+        last_inspection     datetime,
+        reg_number          varchar(255),
+        start_date          datetime,
+        start_loc           varchar(255),
+    )
+
+    create table tickets (
+       tickets_id           bigint               not null auto_increment primary KEY,
+        birth_date          datetime,
+        luggage_weight      integer not null,
+        name                varchar(255),
+        passport_data       varchar(255),
+        ticket_price        integer,
+        type                varchar(255),
+        route_id            bigint,
+    )
+
+    alter table tickets
+                 add constraint FK_ROUTE_ID
+                             foreign key (route_id)
+                                                references routes (route_id)
