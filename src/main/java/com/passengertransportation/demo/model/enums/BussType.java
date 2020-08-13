@@ -1,4 +1,4 @@
-package com.passengertransportation.demo.model;
+package com.passengertransportation.demo.model.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

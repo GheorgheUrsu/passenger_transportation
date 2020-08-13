@@ -2,7 +2,9 @@ package com.passengertransportation.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +13,7 @@ import java.util.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "routes")
 public class Route {
@@ -27,25 +30,19 @@ public class Route {
     private String arrivalDestination;
 
     @Column(name = "start_date")
+    @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime startDate;
 
     @Column(name = "arrival_date")
+    @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime arrivalDate;
 
     @OneToMany(mappedBy = "route",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets = new HashSet<>();
-/*
-    @OneToMany(mappedBy = "route",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Buss> busses = new ArrayList<>();*/
 
-    @OneToOne(mappedBy = "route")
+    @OneToOne
+    @JoinColumn(name = "buss_id", referencedColumnName = "buss_id")
     private Buss buss;
 
-    public void addTicket(Ticket ticket) {
-        this.getTickets().add(ticket);
-
-
-    }
 }

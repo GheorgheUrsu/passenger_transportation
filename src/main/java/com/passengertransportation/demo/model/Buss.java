@@ -1,5 +1,6 @@
 package com.passengertransportation.demo.model;
 
+import com.passengertransportation.demo.model.enums.BussType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +29,8 @@ public class Buss {
     @Enumerated(EnumType.STRING)
     @Column(name = "buss_type")
     private BussType bussType;
-
-    /* @ManyToOne(fetch = FetchType.LAZY)
-     @JoinColumn(name = "route_id")*/
-    @OneToOne
+    
+    @OneToOne(mappedBy = "buss")
     private Route route;
 
 }
