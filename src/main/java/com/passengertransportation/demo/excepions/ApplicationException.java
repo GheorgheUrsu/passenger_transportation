@@ -1,5 +1,8 @@
 package com.passengertransportation.demo.excepions;
 
+import lombok.Getter;
+
+@Getter
 public class ApplicationException extends RuntimeException{
 
     private final ExceptionType exceptionType;
@@ -27,4 +30,5 @@ public class ApplicationException extends RuntimeException{
         super(message, cause, enableSuppression, writableStackTrace);
         this.exceptionType = exceptionType;
     }
+
 }
