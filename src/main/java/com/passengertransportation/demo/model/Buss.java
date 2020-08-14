@@ -12,15 +12,25 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
+@Entity
+@Table(name = "busses")
 public class Buss {
 
+    @Id
+    @Column(name = "buss_id")
+    private Long id;
+
+    @Column(name = "reg_number")
     private String regNumber;
+
+    @Column(name = "last_inspection")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date lastInspection;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "buss_type")
     private BussType bussType;
 
-
+    @OneToOne(mappedBy = "buss")
+    private Route route;
 }

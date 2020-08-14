@@ -1,15 +1,12 @@
 package com.passengertransportation.demo.model;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -21,7 +18,6 @@ import java.util.UUID;
 public class Route {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_id")
     private Long id;
 
@@ -43,8 +39,8 @@ public class Route {
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Ticket> tickets = new HashSet<>();
 
-    @NotNull
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buss_id", referencedColumnName = "buss_id")
     private Buss buss;
 
 }

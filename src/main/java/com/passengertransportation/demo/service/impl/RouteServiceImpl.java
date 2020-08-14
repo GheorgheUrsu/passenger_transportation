@@ -5,23 +5,18 @@ import com.passengertransportation.demo.excepions.ExceptionType;
 import com.passengertransportation.demo.model.Route;
 import com.passengertransportation.demo.model.Ticket;
 import com.passengertransportation.demo.repo.RouteRepository;
-import com.passengertransportation.demo.repo.TicketRepository;
 import com.passengertransportation.demo.service.RouteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class RouteServiceImpl implements RouteService {
 
     private final RouteRepository routeRepository;
-    private final TicketRepository ticketRepository;
 
-    public RouteServiceImpl(RouteRepository routeRepository, TicketRepository ticketRepository) {
+    public RouteServiceImpl(RouteRepository routeRepository) {
         this.routeRepository = routeRepository;
-        this.ticketRepository = ticketRepository;
     }
 
     @Override
@@ -62,12 +57,13 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<Ticket> findAllSoldTicket(Long routeId) {
-        routeRepository.findById(routeId)
+        /*routeRepository.findById(routeId)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
         return ticketRepository.findAllByRouteId(routeId)
                                .stream()
                                .filter(Objects::nonNull)
-                               .collect(Collectors.toList());
+                               .collect(Collectors.toList());*/
+        return null;
     }
 
     @Override
@@ -78,11 +74,12 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<Ticket> deleteAllTickets(Long routeID) {
-        routeRepository.findById(routeID)
+       /* routeRepository.findById(routeID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
         List<Ticket> tickets = ticketRepository.findAllByRouteId(routeID);
         tickets.forEach(ticket -> ticket.setRoute(null));
         tickets.forEach(ticketRepository::save);
-        return ticketRepository.findAllByRouteId(routeID);
+        return ticketRepository.findAllByRouteId(routeID);*/
+        return null;
     }
 }
