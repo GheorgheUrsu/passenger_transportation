@@ -25,7 +25,7 @@ CREATE TABLE BUSSES (
     CREATE TABLE TICKETS (
         TICKETS_ID          BIGINT PRIMARY KEY AUTO_INCREMENT,
         TICKET_PRICE        INTEGER,
-        TYPE                VARCHAR(20),
+        TICKET_TYPE         VARCHAR(20),
         PASSENGER_ID        BIGINT,
         ROUTE_ID            BIGINT
     );

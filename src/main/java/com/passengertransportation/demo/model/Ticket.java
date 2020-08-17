@@ -1,5 +1,6 @@
 package com.passengertransportation.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.passengertransportation.demo.model.enums.TicketType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,6 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "tickets")
 public class Ticket {
@@ -24,7 +24,7 @@ public class Ticket {
     private Integer price;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
+    @Column(name = "ticket_type")
     private TicketType ticketType;
 
     @ManyToOne(fetch = FetchType.LAZY)

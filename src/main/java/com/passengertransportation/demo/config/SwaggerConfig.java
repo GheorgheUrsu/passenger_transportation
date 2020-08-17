@@ -30,10 +30,10 @@ public class SwaggerConfig {
         Contact contact = new Contact("Passenger Transportation Demo","", "");
 
         return new ApiInfo(
-                "Pasenger Transportation Demo Documentation",
+                "Passenger Transportation Demo Documentation",
                 "This swagger documentation is automatically generated for Passenger Transportation API",
                 "1.0.0",
-                "for educationl purposes only",
+                "For educational purposes only",
                 contact,
                 "",
                 "",

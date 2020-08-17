@@ -36,12 +36,12 @@ public class RouteController {
 
     @GetMapping("/{routeID}")
     @ApiOperation(value = "FIND ROUTE BY ID", notes = "\n"+
-                         "This function finds route with specific ID")
+                           "This function finds route with specific ID")
     public Route findRouteByID(@PathVariable Long routeID){
         return routeService.findByID(routeID);
     }
 
-    @PutMapping("/routeID")
+    @PutMapping("/{routeID}")
     @ApiOperation(value = "UPDATE ROUTE WITH ID", notes = "\n" +
                           "This function updates route with specific ID")
     public Route updateRoute(@RequestBody Route route, @PathVariable Long routeID){
@@ -58,7 +58,7 @@ public class RouteController {
     @GetMapping("/{routeID}/tickets")
     @ApiOperation(value = "GET ALL SOLD TICKETS", notes = "\n" +
                         "This function show all sold tickets for a specific route")
-    public List<Ticket> findAllSoldedTicket(@PathVariable Long routeID){
+    public List<Ticket> findAllSoldTicket(@PathVariable Long routeID){
         return routeService.findAllSoldTicket(routeID);
     }
 
@@ -69,7 +69,7 @@ public class RouteController {
 
     @DeleteMapping("/{routeID}/tickets")
     @ApiOperation(value = "DELETE ALL TICKETS", notes = "\n" +
-                 "This function delets all tickets for a specific Route")
+                 "This function deletes all tickets for a specific Route")
     public List<Ticket> deleteAllTickets(@PathVariable Long routeID){
        return routeService.deleteAllTickets(routeID);
     }

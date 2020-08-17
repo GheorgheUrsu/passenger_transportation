@@ -12,6 +12,6 @@ public class RouteDTO {
     private String arrivalDestination;
     private LocalDateTime startDateTime;
     private LocalDateTime arrivalDateTime;
-    private Set<TicketDTO> ticketsDTO;
+    private Set<TicketDTO> tickets;
     private BussDTO buss;
 }
