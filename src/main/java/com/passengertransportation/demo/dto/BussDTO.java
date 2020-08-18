@@ -2,13 +2,12 @@ package com.passengertransportation.demo.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class BussDTO {
     private Long id;
     private String regNumber;
-    private Date lastInspection;
+    private LocalDate lastInspection;
     private String bussType;
-    private RouteDTO route;
 }

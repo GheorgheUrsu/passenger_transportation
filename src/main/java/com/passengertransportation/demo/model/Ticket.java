@@ -1,20 +1,24 @@
 package com.passengertransportation.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.google.common.base.Objects;
 import com.passengertransportation.demo.model.enums.TicketType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class Ticket implements Serializable {
 
     @Id
     @Column(name = "tickets_id")
@@ -35,4 +39,18 @@ public class Ticket {
     @JoinColumn(name = "passenger_id", referencedColumnName = "passenger_id")
     private Passenger passenger;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ticket)) return false;
+        Ticket ticket = (Ticket) o;
+        return Objects.equal(getId(), ticket.getId()) &&
+                Objects.equal(getRoute(), ticket.getRoute()) &&
+                Objects.equal(getPassenger(), ticket.getPassenger());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getRoute(), getPassenger());
+    }
 }

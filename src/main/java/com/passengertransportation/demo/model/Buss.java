@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class Buss {
 
     @Column(name = "last_inspection")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date lastInspection;
+    private LocalDate lastInspection;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "buss_type")
@@ -33,4 +34,8 @@ public class Buss {
 
     @OneToOne(mappedBy = "buss")
     private Route route;
+
+    public String getLastInspection(){
+         return lastInspection.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
 }

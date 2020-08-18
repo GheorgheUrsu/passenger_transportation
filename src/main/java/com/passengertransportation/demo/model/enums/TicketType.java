@@ -1,6 +1,5 @@
 package com.passengertransportation.demo.model.enums;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,10 @@
 package com.passengertransportation.demo.model;
 
-import lombok.*;
+import com.google.common.base.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,7 +13,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "passengers")
 public class Passenger {
@@ -37,4 +40,17 @@ public class Passenger {
 
     @OneToOne(mappedBy = "passenger")
     private Ticket ticket;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Passenger)) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equal(passportData, passenger.passportData);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(passportData);
+    }
 }

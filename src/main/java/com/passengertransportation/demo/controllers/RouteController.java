@@ -1,12 +1,14 @@
 package com.passengertransportation.demo.controllers;
 
-import com.passengertransportation.demo.model.Route;
+import com.passengertransportation.demo.dto.RouteDTO;
 import com.passengertransportation.demo.model.Ticket;
 import com.passengertransportation.demo.service.RouteService;
 import com.passengertransportation.demo.service.TicketService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,35 +25,40 @@ public class RouteController {
     @GetMapping
     @ApiOperation(value = "GET ALL ROUTES", notes = "\n"+
                         "This function gets all the routes")
-    public List<Route> getAllRoutes(){
+    @ResponseStatus(HttpStatus.OK)
+    public List<RouteDTO> getAllRoutes(){
         return routeService.getAllRoutes();
     }
 
     @PostMapping
     @ApiOperation(value = "CREATE A ROUTE", notes = "\n" +
                          "This function create route")
-    public Route createRoute(@RequestBody Route route) {
-        return routeService.createRoute(route);
+    @ResponseStatus(HttpStatus.CREATED)
+    public RouteDTO createRoute(@RequestBody @Validated RouteDTO routeDTO) {
+        return routeService.createRoute(routeDTO);
     }
 
     @GetMapping("/{routeID}")
     @ApiOperation(value = "FIND ROUTE BY ID", notes = "\n"+
                            "This function finds route with specific ID")
-    public Route findRouteByID(@PathVariable Long routeID){
+    @ResponseStatus(HttpStatus.OK)
+    public RouteDTO findRouteByID(@PathVariable Long routeID){
         return routeService.findByID(routeID);
     }
 
     @PutMapping("/{routeID}")
     @ApiOperation(value = "UPDATE ROUTE WITH ID", notes = "\n" +
                           "This function updates route with specific ID")
-    public Route updateRoute(@RequestBody Route route, @PathVariable Long routeID){
-        return routeService.updateRoute(route, routeID);
+    @ResponseStatus(HttpStatus.OK)
+    public RouteDTO updateRoute(@RequestBody RouteDTO routeDTO, @PathVariable Long routeID){
+        return routeService.updateRoute(routeDTO, routeID);
     }
 
     @DeleteMapping("/{routeID}")
     @ApiOperation(value = "DELETE A ROUTE", notes = "\n" +
                          "This function deletes a route with specific routeID")
-    public Route deleteRoute(@PathVariable Long routeID){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public RouteDTO deleteRoute(@PathVariable Long routeID){
         return routeService.deleteRouteByID(routeID);
     }
 

@@ -1,8 +1,10 @@
 package com.passengertransportation.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import com.google.common.base.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,7 +16,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "routes")
 public class Route {
@@ -24,6 +25,7 @@ public class Route {
     private Long id;
 
     @Column(name = "start_loc")
+
     private String startLocation;
 
     @Column(name = "arrival_loc")
@@ -45,4 +47,28 @@ public class Route {
     @JoinColumn(name = "buss_id", referencedColumnName = "buss_id")
     private Buss buss;
 
+
+    public void addTicket(Ticket ticket){
+        if(tickets == null) {
+            tickets = new HashSet<>();
+        }
+        tickets.add(ticket);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Route)) return false;
+        Route route = (Route) o;
+        return Objects.equal(getId(), route.getId()) &&
+                Objects.equal(getStartLocation(), route.getStartLocation()) &&
+                Objects.equal(getArrivalDestination(), route.getArrivalDestination()) &&
+                Objects.equal(getStartDate(), route.getStartDate()) &&
+                Objects.equal(getArrivalDate(), route.getArrivalDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getStartLocation(), getArrivalDestination(), getStartDate(), getArrivalDate());
+    }
 }

@@ -1,7 +1,10 @@
 package com.passengertransportation.demo.service.impl;
 
+import com.passengertransportation.demo.dto.RouteDTO;
 import com.passengertransportation.demo.excepions.ApplicationException;
 import com.passengertransportation.demo.excepions.ExceptionType;
+import com.passengertransportation.demo.mappers.BussMapper;
+import com.passengertransportation.demo.mappers.RouteMapper;
 import com.passengertransportation.demo.model.Route;
 import com.passengertransportation.demo.model.Ticket;
 import com.passengertransportation.demo.repo.RouteRepository;
@@ -9,6 +12,7 @@ import com.passengertransportation.demo.service.RouteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RouteServiceImpl implements RouteService {
@@ -20,39 +24,47 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<Route> getAllRoutes() {
-        return routeRepository.findAll();
+    public List<RouteDTO> getAllRoutes() {
+        return routeRepository.findAll().stream()
+                                        .map(RouteMapper.INSTANCE::toDTO)
+                                        .collect(Collectors.toList());
     }
 
     @Override
-    public Route findByID(Long routeID) {
-        return routeRepository.findById(routeID)
+    public RouteDTO findByID(Long routeID) {
+        Route route = routeRepository.findById(routeID)
+                            .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
+        return RouteMapper.INSTANCE.toDTO(route);
+    }
+
+    @Override
+    public RouteDTO createRoute(RouteDTO routeDTO) {
+        final Route route = RouteMapper.INSTANCE.fromDto(routeDTO);
+        final Route savedRoute  = routeRepository.save(route);
+        return RouteMapper.INSTANCE.toDTO(savedRoute);
+    }
+
+    @Override
+    public RouteDTO updateRoute(RouteDTO routeDTO, Long routeID) {
+        Route updatable = routeRepository.findById(routeID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
+
+        updatable.setArrivalDate(routeDTO.getArrivalDate());
+        updatable.setStartDate(routeDTO.getStartDate());
+        updatable.setStartLocation(routeDTO.getStartLocation());
+        updatable.setArrivalDestination(routeDTO.getArrivalDestination());
+        updatable.setBuss(BussMapper.INSTANCE.fromBussDto(routeDTO.getBuss()));
+        routeRepository.save(updatable);
+
+        return RouteMapper.INSTANCE.toDTO(updatable);
     }
 
     @Override
-    public Route createRoute(Route route) {
-        return routeRepository.save(route);
-    }
-
-    @Override
-    public Route updateRoute(Route route, Long routeID) {
-        Route updatableRoute = routeRepository.findById(routeID)
-                .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
-        updatableRoute.setBuss(route.getBuss());
-        updatableRoute.setArrivalDestination(route.getArrivalDestination());
-        updatableRoute.setStartLocation(route.getStartLocation());
-        updatableRoute.setStartDate(route.getStartDate());
-        updatableRoute.setArrivalDate(route.getArrivalDate());
-        return routeRepository.save(route);
-    }
-
-    @Override
-    public Route deleteRouteByID(Long routeID) {
+    public RouteDTO deleteRouteByID(Long routeID) {
         Route deleted = routeRepository.findById(routeID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
         routeRepository.deleteById(routeID);
-        return deleted;
+        return RouteMapper.INSTANCE.toDTO(deleted);
     }
 
     @Override
