@@ -16,4 +16,5 @@ public interface PassengerMapper {
 
     @InheritInverseConfiguration
     Passenger fromDTO(PassengerDTO passengerDTO, @Context CycleAvoidingMappingContex context);
+
 }

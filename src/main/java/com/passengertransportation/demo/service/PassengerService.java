@@ -12,4 +12,6 @@ public interface PassengerService {
     PassengerDTO updatePassenger(Long passengerID, PassengerDTO passengerDTO);
 
     PassengerDTO findPassengerByID(Long passengerID);
+
+    PassengerDTO createPassenger(PassengerDTO passengerDTO);
 }

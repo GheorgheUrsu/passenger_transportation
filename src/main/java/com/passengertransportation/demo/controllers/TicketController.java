@@ -36,6 +36,8 @@ public class TicketController {
     }
 
     @DeleteMapping("/{ticketID}")
+    @ApiOperation(value = "DELETE TICKET BY ID", notes = "\n" +
+        "This function delete a ticket by id")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public TicketDTO deleteTicketByID(@PathVariable Long ticketID) {
         return ticketService.deleteTicketByID(ticketID);

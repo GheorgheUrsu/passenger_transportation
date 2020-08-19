@@ -20,70 +20,76 @@ import java.util.List;
 public class RouteController {
 
     private final RouteService routeService;
-    private final TicketService  ticketService;
+    private final TicketService ticketService;
 
     @GetMapping
-    @ApiOperation(value = "GET ALL ROUTES", notes = "\n"+
-                        "This function gets all the routes")
+    @ApiOperation(value = "GET ALL ROUTES", notes = "\n" +
+            "This function gets all the routes")
     @ResponseStatus(HttpStatus.OK)
-    public List<RouteDTO> getAllRoutes(){
+    public List<RouteDTO> getAllRoutes() {
         return routeService.getAllRoutes();
     }
 
     @PostMapping
     @ApiOperation(value = "CREATE A ROUTE", notes = "\n" +
-                         "This function create route")
+            "This function create route")
     @ResponseStatus(HttpStatus.CREATED)
     public RouteDTO createRoute(@RequestBody @Validated RouteDTO routeDTO) {
         return routeService.createRoute(routeDTO);
     }
 
     @GetMapping("/{routeID}")
-    @ApiOperation(value = "FIND ROUTE BY ID", notes = "\n"+
-                           "This function finds route with specific ID")
+    @ApiOperation(value = "FIND ROUTE BY ID", notes = "\n" +
+            "This function finds route with specific ID")
     @ResponseStatus(HttpStatus.OK)
-    public RouteDTO findRouteByID(@PathVariable Long routeID){
+    public RouteDTO findRouteByID(@PathVariable Long routeID) {
         return routeService.findByID(routeID);
     }
 
     @PutMapping("/{routeID}")
     @ApiOperation(value = "UPDATE ROUTE WITH ID", notes = "\n" +
-                          "This function updates route with specific ID")
+            "This function updates route with specific ID")
     @ResponseStatus(HttpStatus.OK)
-    public RouteDTO updateRoute(@RequestBody RouteDTO routeDTO, @PathVariable Long routeID){
+    public RouteDTO updateRoute(@RequestBody RouteDTO routeDTO, @PathVariable Long routeID) {
         return routeService.updateRoute(routeDTO, routeID);
     }
 
     @DeleteMapping("/{routeID}")
     @ApiOperation(value = "DELETE A ROUTE", notes = "\n" +
-                         "This function deletes a route with specific routeID")
+            "This function deletes a route with specific routeID")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public RouteDTO deleteRoute(@PathVariable Long routeID){
+    public RouteDTO deleteRoute(@PathVariable Long routeID) {
         return routeService.deleteRouteByID(routeID);
     }
 
     @GetMapping("/{routeID}/tickets")
     @ApiOperation(value = "GET ALL SOLD TICKETS", notes = "\n" +
-                        "This function show all sold tickets for a specific route")
-    public List<TicketDTO> findAllSoldTicketByRoute(@PathVariable Long routeID){
+            "This function show all sold tickets for a specific route")
+    public List<TicketDTO> findAllSoldTicketByRoute(@PathVariable Long routeID) {
         return routeService.findAllSoldTicket(routeID);
     }
 
     @PutMapping("{routeID}/tickets/{removed_ticketID}/{new_ticketID}")
-    public TicketDTO updateTicketOnRoute(@PathVariable Long routeID, @PathVariable Long removed_ticketID, @RequestBody TicketDTO newTicketDto){
-        return routeService.updateTicketOnRoute(routeID,removed_ticketID, newTicketDto);
+    @ApiOperation(value = "UPDATE TICKET", notes = "\n" +
+            "This function updates a ticket")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TicketDTO updateTicketOnRoute(@PathVariable Long routeID, @PathVariable Long removed_ticketID, @RequestBody TicketDTO newTicketDto) {
+        return routeService.updateTicketOnRoute(routeID, removed_ticketID, newTicketDto);
     }
 
     @DeleteMapping("/{routeID}/tickets")
     @ApiOperation(value = "DELETE ALL TICKETS", notes = "\n" +
-                 "This function deletes all tickets for a specific Route")
+            "This function deletes all tickets for a specific Route")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public List<TicketDTO> deleteAllTickets(@PathVariable Long routeID){
-       return routeService.deleteAllTickets(routeID);
+    public List<TicketDTO> deleteAllTickets(@PathVariable Long routeID) {
+        return routeService.deleteAllTickets(routeID);
     }
 
     @DeleteMapping("/{routeID}/tickets/{ticketID}")
-    public TicketDTO deleteTicketFromRoute(@PathVariable Long routeID, @PathVariable Long ticketID){
+    @ApiOperation(value = "DELETE A TICKET", notes = "\n" +
+            "This function deletes a ticket from a specific route")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public TicketDTO deleteTicketFromRoute(@PathVariable Long routeID, @PathVariable Long ticketID) {
         return routeService.deleteTicketFromRoute(routeID, ticketID);
     }
 }

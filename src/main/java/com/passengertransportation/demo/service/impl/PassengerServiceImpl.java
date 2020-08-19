@@ -29,7 +29,7 @@ public class PassengerServiceImpl implements PassengerService {
     @Override
     public List<PassengerDTO> getAllPassengers() {
         return passengerRepository.findAll().stream()
-                                            .map(passenger -> PassengerMapper.INSTANCE.toDTO(passenger))
+                                            .map(passenger -> PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex()))
                                             .collect(Collectors.toList());
     }
 
@@ -51,13 +51,7 @@ public class PassengerServiceImpl implements PassengerService {
         updatable.setName(passengerDTO.getName());
         updatable.setPassportData(passengerDTO.getPassportData());
         updatable.setBirthDate(passengerDTO.getBirthDate());
-        updatable.setTicket(TicketMapper.INSTANCE.fromDTO(passengerDTO.getTicketDTO(), new CycleAvoidingMappingContex()));
         passengerRepository.save(updatable);
-
-        Ticket ticket = ticketRepository.findById(passengerDTO.getTicketDTO().getId())
-                .orElseThrow(() -> new ApplicationException(ExceptionType.NOT_TICKET_FOR_THIS_PASSENGER));
-        ticket.setPassenger(updatable);
-        ticketRepository.save(ticket);
 
         return PassengerMapper.INSTANCE.toDTO(updatable, new CycleAvoidingMappingContex());
     }
@@ -66,6 +60,14 @@ public class PassengerServiceImpl implements PassengerService {
     public PassengerDTO findPassengerByID(Long passengerID) {
         Passenger passenger = passengerRepository.findById(passengerID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
+        return PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex());
+    }
+
+    @Override
+    public PassengerDTO createPassenger(PassengerDTO passengerDTO) {
+        Passenger passenger = PassengerMapper.INSTANCE.fromDTO(passengerDTO, new CycleAvoidingMappingContex());
+        passengerRepository.save(passenger);
+
         return PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex());
     }
 }

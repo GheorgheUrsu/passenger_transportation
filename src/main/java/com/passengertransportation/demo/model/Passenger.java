@@ -32,7 +32,7 @@ public class Passenger {
     private String passportData;
 
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
     @NonNull
     private LocalDate birthDate;
 

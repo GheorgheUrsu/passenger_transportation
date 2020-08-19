@@ -11,5 +11,4 @@ public class PassengerDTO {
     private String passportData;
     private LocalDate birthDate;
     private Integer luggageWeight;
-    private TicketDTO ticketDTO;
 }

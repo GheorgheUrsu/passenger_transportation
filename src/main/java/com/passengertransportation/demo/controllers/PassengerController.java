@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/passengers")
+@Api(value = "passenger", description = "CRUD OPERATIONS FOR PASSENGERS", tags = "PASSENGER")
 public class PassengerController {
 
     private final PassengerService passengerService;
@@ -27,7 +28,7 @@ public class PassengerController {
         return passengerService.getAllPassengers();
     }
 
-    @DeleteMapping("/{passengerID")
+    @DeleteMapping("/{passengerID}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation(value = "DELETE PASSENGER BY ID", notes = "\n" +
             "This operations deletes passenger with specific ID")
@@ -39,13 +40,23 @@ public class PassengerController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "UPDATE PASSENGER", notes = "\n" +
             "This operation updates a passenger")
-    public PassengerDTO updatePassenger(@PathVariable Long passengerID, @RequestBody PassengerDTO passengerDTO){
+    public PassengerDTO updatePassenger(@PathVariable Long passengerID, @RequestBody PassengerDTO passengerDTO) {
         return passengerService.updatePassenger(passengerID, passengerDTO);
     }
 
     @GetMapping("/{passengerID}")
     @ResponseStatus(HttpStatus.OK)
-    public PassengerDTO getPassengerByID(@PathVariable Long passengerID){
+    @ApiOperation(value = "GET PASSENGER BY ID", notes = "\n" +
+            "This function get passenger by id")
+    public PassengerDTO getPassengerByID(@PathVariable Long passengerID) {
         return passengerService.findPassengerByID(passengerID);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "CREATE PASSENGER", notes = "\n" +
+            "This function create a passenger")
+    public PassengerDTO createPassenger(@RequestBody PassengerDTO passengerDTO) {
+        return passengerService.createPassenger(passengerDTO);
     }
 }

@@ -37,23 +37,23 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<TicketDTO> getAllSoldTickets() {
         return ticketRepository.findAll().stream()
-                                         .map(
-                                                 ticket -> TicketMapper.INSTANCE.toDTO(ticket, new CycleAvoidingMappingContex()))
-                                         .collect(Collectors.toList());
+                .map(
+                        ticket -> TicketMapper.INSTANCE.toDTO(ticket, new CycleAvoidingMappingContex()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public TicketDTO deleteTicketByID(Long ticketID){
+    public TicketDTO deleteTicketByID(Long ticketID) {
         final Ticket deleted = ticketRepository.findById(ticketID)
-                                            .orElseThrow(() -> new ApplicationException(ExceptionType.TICKET_NOT_FOUND));
+                .orElseThrow(() -> new ApplicationException(ExceptionType.TICKET_NOT_FOUND));
         ticketRepository.deleteById(ticketID);
         return TicketMapper.INSTANCE.toDTO(deleted, new CycleAvoidingMappingContex());
     }
 
     @Override
-    public TicketDTO updateTicket(TicketDTO ticketDTO, Long ticketID){
+    public TicketDTO updateTicket(TicketDTO ticketDTO, Long ticketID) {
         final Ticket updatable = ticketRepository.findById(ticketID)
-                                           .orElseThrow(() -> new ApplicationException(ExceptionType.TICKET_NOT_FOUND));
+                .orElseThrow(() -> new ApplicationException(ExceptionType.TICKET_NOT_FOUND));
 
         updatable.setPassenger(PassengerMapper.INSTANCE.fromDTO(ticketDTO.getPassenger(), new CycleAvoidingMappingContex()));
         updatable.setRoute(RouteMapper.INSTANCE.fromDto(ticketDTO.getRoute(), new CycleAvoidingMappingContex()));
@@ -68,28 +68,27 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public List<TicketDTO> addAllTickets(List<TicketDTO> ticketDTOS) {
         List<TicketDTO> acceptedTickets = new ArrayList<>();
-       for(TicketDTO ticketDTO : ticketDTOS) {
-           Long routeID = ticketDTO.getRoute().getId();
-           Long bussID = ticketDTO.getRoute().getBuss().getId();
-           Route route = routeRepository.findById(routeID)
+        for (TicketDTO ticketDTO : ticketDTOS) {
+            Long routeID = ticketDTO.getRoute().getId();
+            Long bussID = ticketDTO.getRoute().getBuss().getId();
+            Route route = routeRepository.findById(routeID)
                     .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
-           Set<Ticket> tickets = ticketRepository.findAllByRouteId(routeID);
+            Set<Ticket> tickets = ticketRepository.findAllByRouteId(routeID);
 
-           final Buss buss = bussRepository.findById(bussID)
-                   .orElseThrow(() -> new ApplicationException(ExceptionType.BUSS_NOT_FOUND));
+            final Buss buss = bussRepository.findById(bussID)
+                    .orElseThrow(() -> new ApplicationException(ExceptionType.BUSS_NOT_FOUND));
 
-           if(CapacityValidator.hasSeats(tickets, buss.getBussType())){
-               Ticket ticket = TicketMapper.INSTANCE.fromDTO(ticketDTO, new CycleAvoidingMappingContex());
-               route.addTicket(ticket);
-               routeRepository.save(route);
-               ticket.setRoute(route);
-            Ticket createdTicket = ticketRepository.save(ticket);
-            acceptedTickets = new ArrayList<>();
-            acceptedTickets.add(TicketMapper.INSTANCE.toDTO(createdTicket, new CycleAvoidingMappingContex()));
-           } else {
-               throw new ApplicationException(ExceptionType.NO_MORE_AVAILABLE_TICKETS);
-           }
-       }
+            if (CapacityValidator.hasSeats(tickets, buss.getBussType())) {
+                Ticket ticket = TicketMapper.INSTANCE.fromDTO(ticketDTO, new CycleAvoidingMappingContex());
+                route.addTicket(ticket);
+                routeRepository.save(route);
+                ticket.setRoute(route);
+                Ticket createdTicket = ticketRepository.save(ticket);
+                acceptedTickets.add(TicketMapper.INSTANCE.toDTO(createdTicket, new CycleAvoidingMappingContex()));
+            } else {
+                throw new ApplicationException(ExceptionType.NO_MORE_AVAILABLE_TICKETS);
+            }
+        }
         return acceptedTickets;
     }
 }
