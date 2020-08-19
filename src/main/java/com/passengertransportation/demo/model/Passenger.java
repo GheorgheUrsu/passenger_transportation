@@ -47,6 +47,10 @@ public class Passenger {
         return birthDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    public void setBirthDate(String birthDate){
+        this.birthDate = LocalDate.parse(birthDate);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

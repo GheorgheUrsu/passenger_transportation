@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,6 +46,26 @@ public class Route {
     @JoinColumn(name = "buss_id", referencedColumnName = "buss_id")
     private Buss buss;
 
+
+    public String getStartDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.startDate.format(formatter);
+    }
+
+    public void setStartDate(String startDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.startDate = LocalDateTime.parse(startDate,formatter);
+    }
+
+    public String getArrivalDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.arrivalDate.format(formatter);
+    }
+
+    public void setArrivalDate(String arrivalDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.arrivalDate = LocalDateTime.parse(arrivalDate, formatter);
+    }
 
     public void addTicket(Ticket ticket){
         if(tickets == null) {

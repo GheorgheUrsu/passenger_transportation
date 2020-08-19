@@ -38,4 +38,8 @@ public class Buss {
     public String getLastInspection(){
          return lastInspection.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
+
+    public void setLastInspection(String lastInspection){
+        this.lastInspection = LocalDate.parse(lastInspection);
+    }
 }

@@ -1,11 +1,9 @@
 package com.passengertransportation.demo.controllers;
 
 import com.passengertransportation.demo.dto.PassengerDTO;
-import com.passengertransportation.demo.model.Passenger;
 import com.passengertransportation.demo.service.PassengerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

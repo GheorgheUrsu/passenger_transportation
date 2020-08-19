@@ -1,6 +1,5 @@
 package com.passengertransportation.demo.validators;
 
-import com.passengertransportation.demo.dto.TicketDTO;
 import com.passengertransportation.demo.model.Ticket;
 import com.passengertransportation.demo.model.enums.BussType;
 

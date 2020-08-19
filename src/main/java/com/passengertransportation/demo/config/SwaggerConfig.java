@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 "1.0.0",
                 "For educational purposes only",
                 contact,
-                "",
+                "No License",
                 "",
                 Collections.emptyList());
     }
