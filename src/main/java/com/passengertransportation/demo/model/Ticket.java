@@ -4,7 +4,6 @@ package com.passengertransportation.demo.model;
 import com.google.common.base.Objects;
 import com.passengertransportation.demo.model.enums.TicketType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +12,6 @@ import java.io.Serializable;
 
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

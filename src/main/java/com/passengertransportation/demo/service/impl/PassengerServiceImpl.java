@@ -1,0 +1,71 @@
+package com.passengertransportation.demo.service.impl;
+
+import com.passengertransportation.demo.dto.PassengerDTO;
+import com.passengertransportation.demo.excepions.ApplicationException;
+import com.passengertransportation.demo.excepions.ExceptionType;
+import com.passengertransportation.demo.mappers.CycleAvoidingMappingContex;
+import com.passengertransportation.demo.mappers.PassengerMapper;
+import com.passengertransportation.demo.mappers.TicketMapper;
+import com.passengertransportation.demo.model.Passenger;
+import com.passengertransportation.demo.model.Ticket;
+import com.passengertransportation.demo.repo.PassengerRepository;
+import com.passengertransportation.demo.repo.TicketRepository;
+import com.passengertransportation.demo.service.PassengerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class PassengerServiceImpl implements PassengerService {
+
+    private final PassengerRepository passengerRepository;
+    private final TicketRepository ticketRepository;
+
+    @Override
+    public List<PassengerDTO> getAllPassengers() {
+        return passengerRepository.findAll().stream()
+                                            .map(passenger -> PassengerMapper.INSTANCE.toDTO(passenger))
+                                            .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public PassengerDTO deletePassengerById(Long passengerID) {
+        Passenger deletable = passengerRepository.findById(passengerID)
+                .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
+        passengerRepository.deleteById(passengerID);
+
+        return PassengerMapper.INSTANCE.toDTO(deletable, new CycleAvoidingMappingContex());
+    }
+
+    @Override
+    public PassengerDTO updatePassenger(Long passengerID, PassengerDTO passengerDTO) {
+        Passenger updatable =  passengerRepository.findById(passengerID)
+                .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
+        updatable.setLuggageWeight(passengerDTO.getLuggageWeight());
+        updatable.setName(passengerDTO.getName());
+        updatable.setPassportData(passengerDTO.getPassportData());
+        updatable.setBirthDate(passengerDTO.getBirthDate());
+        updatable.setTicket(TicketMapper.INSTANCE.fromDTO(passengerDTO.getTicketDTO(), new CycleAvoidingMappingContex()));
+        passengerRepository.save(updatable);
+
+        Ticket ticket = ticketRepository.findById(passengerDTO.getTicketDTO().getId())
+                .orElseThrow(() -> new ApplicationException(ExceptionType.NOT_TICKET_FOR_THIS_PASSENGER));
+        ticket.setPassenger(updatable);
+        ticketRepository.save(ticket);
+
+        return PassengerMapper.INSTANCE.toDTO(updatable, new CycleAvoidingMappingContex());
+    }
+
+    @Override
+    public PassengerDTO findPassengerByID(Long passengerID) {
+        Passenger passenger = passengerRepository.findById(passengerID)
+                .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
+        return PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex());
+    }
+}

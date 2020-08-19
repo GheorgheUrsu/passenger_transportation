@@ -2,14 +2,14 @@ package com.passengertransportation.demo.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class PassengerDTO {
     private Long id;
     private String name;
     private String passportData;
-    private Date birthDate;
-    private int luggageWeight;
-    private TicketDTO ticket;
+    private LocalDate birthDate;
+    private Integer luggageWeight;
+    private TicketDTO ticketDTO;
 }

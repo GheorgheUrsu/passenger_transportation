@@ -8,7 +8,8 @@ import lombok.NonNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @AllArgsConstructor
@@ -33,13 +34,18 @@ public class Passenger {
     @Column(name = "birth_date")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     @NonNull
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "luggage_weight")
-    private int luggageWeight;
+    private Integer luggageWeight;
 
     @OneToOne(mappedBy = "passenger")
     private Ticket ticket;
+
+
+    public String getBirthDate(){
+        return birthDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
 
     @Override
     public boolean equals(Object o) {

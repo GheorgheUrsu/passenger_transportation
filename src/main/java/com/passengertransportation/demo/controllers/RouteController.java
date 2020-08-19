@@ -1,7 +1,7 @@
 package com.passengertransportation.demo.controllers;
 
 import com.passengertransportation.demo.dto.RouteDTO;
-import com.passengertransportation.demo.model.Ticket;
+import com.passengertransportation.demo.dto.TicketDTO;
 import com.passengertransportation.demo.service.RouteService;
 import com.passengertransportation.demo.service.TicketService;
 import io.swagger.annotations.Api;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/routes")
 @RequiredArgsConstructor
-@Api(value = "route", description = "CRUD operations for routes", tags = "ROUTE")
+@Api(value = "route", description = "CRUD OPERATIONS FOR ROUTES", tags = "ROUTE")
 public class RouteController {
 
     private final RouteService routeService;
@@ -65,19 +65,25 @@ public class RouteController {
     @GetMapping("/{routeID}/tickets")
     @ApiOperation(value = "GET ALL SOLD TICKETS", notes = "\n" +
                         "This function show all sold tickets for a specific route")
-    public List<Ticket> findAllSoldTicket(@PathVariable Long routeID){
+    public List<TicketDTO> findAllSoldTicketByRoute(@PathVariable Long routeID){
         return routeService.findAllSoldTicket(routeID);
     }
 
     @PutMapping("{routeID}/tickets/{removed_ticketID}/{new_ticketID}")
-    public Ticket updateTicketOnRoute(@PathVariable Long routeID, @PathVariable Long removed_ticketID, @PathVariable Long new_ticketID){
-        return routeService.updateTicketOnRoute(routeID,removed_ticketID,new_ticketID);
+    public TicketDTO updateTicketOnRoute(@PathVariable Long routeID, @PathVariable Long removed_ticketID, @RequestBody TicketDTO newTicketDto){
+        return routeService.updateTicketOnRoute(routeID,removed_ticketID, newTicketDto);
     }
 
     @DeleteMapping("/{routeID}/tickets")
     @ApiOperation(value = "DELETE ALL TICKETS", notes = "\n" +
                  "This function deletes all tickets for a specific Route")
-    public List<Ticket> deleteAllTickets(@PathVariable Long routeID){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public List<TicketDTO> deleteAllTickets(@PathVariable Long routeID){
        return routeService.deleteAllTickets(routeID);
+    }
+
+    @DeleteMapping("/{routeID}/tickets/{ticketID}")
+    public TicketDTO deleteTicketFromRoute(@PathVariable Long routeID, @PathVariable Long ticketID){
+        return routeService.deleteTicketFromRoute(routeID, ticketID);
     }
 }
