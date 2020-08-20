@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +26,7 @@ public class BussServiceImpl implements BussService {
     @Override
     public List<BussDTO> getAllBusses() {
         return bussRepository.findAll().stream()
+                .filter(Objects::nonNull)
                 .map(buss -> BussMapper.INSTANCE.toBussDto(buss, new CycleAvoidingMappingContex()))
                 .collect(Collectors.toList());
     }
@@ -60,7 +62,6 @@ public class BussServiceImpl implements BussService {
 
         updatable.setLastInspection(bussDTO.getLastInspection());
         updatable.setRegNumber(bussDTO.getRegNumber());
-        //TODO CHECK
         updatable.setBussType(bussDTO.getBussType());
         bussRepository.save(updatable);
 
