@@ -12,6 +12,7 @@ import com.passengertransportation.demo.service.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,13 +23,12 @@ import java.util.stream.Collectors;
 public class PassengerServiceImpl implements PassengerService {
 
     private final PassengerRepository passengerRepository;
-    private final TicketRepository ticketRepository;
 
     @Override
     public List<PassengerDTO> getAllPassengers() {
         return passengerRepository.findAll().stream()
-                                            .map(passenger -> PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex()))
-                                            .collect(Collectors.toList());
+                .map(passenger -> PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex()))
+                .collect(Collectors.toList());
     }
 
 
@@ -43,15 +43,15 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public PassengerDTO updatePassenger(Long passengerID, PassengerDTO passengerDTO) {
-        Passenger updatable =  passengerRepository.findById(passengerID)
+        Passenger updatable = passengerRepository.findById(passengerID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
         updatable.setLuggageWeight(passengerDTO.getLuggageWeight());
         updatable.setName(passengerDTO.getName());
         updatable.setPassportData(passengerDTO.getPassportData());
         updatable.setBirthDate(passengerDTO.getBirthDate());
-        passengerRepository.save(updatable);
+        Passenger persisted = passengerRepository.save(updatable);
 
-        return PassengerMapper.INSTANCE.toDTO(updatable, new CycleAvoidingMappingContex());
+        return PassengerMapper.INSTANCE.toDTO(persisted, new CycleAvoidingMappingContex());
     }
 
     @Override
