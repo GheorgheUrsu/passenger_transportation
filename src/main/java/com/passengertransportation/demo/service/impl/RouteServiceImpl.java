@@ -98,8 +98,7 @@ public class RouteServiceImpl implements RouteService {
         }
             Ticket updatable = deletable.get();
             updatable.setPrice(newTicketDto.getPrice());
-            updatable.setTicketType(
-                    (newTicketDto.getTicketType().equalsIgnoreCase("BUSSINES") ? TicketType.BUSINESS : TicketType.ECONOM));
+            updatable.setTicketType(newTicketDto.getTicketType());
             updatable.setPassenger(PassengerMapper.INSTANCE.fromDTO(newTicketDto.getPassenger(), new CycleAvoidingMappingContex()));
             updatable.setRoute(RouteMapper.INSTANCE.fromDto(newTicketDto.getRoute(), new CycleAvoidingMappingContex()));
             Ticket saved = ticketRepository.save(updatable);

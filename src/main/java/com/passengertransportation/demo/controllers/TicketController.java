@@ -50,4 +50,12 @@ public class TicketController {
     public TicketDTO updateTicket(@PathVariable Long ticketID, @RequestBody TicketDTO ticketDTO) {
         return ticketService.updateTicket(ticketDTO, ticketID);
     }
+
+    @GetMapping("/{ticketID}")
+    @ApiOperation(value = "FIND TICKET BY ID", notes = "\n" +
+       "This function find ticket by id")
+    @ResponseStatus(HttpStatus.OK)
+    public TicketDTO findTicketByID(@PathVariable Long ticketID){
+        return ticketService.findById(ticketID);
+    }
 }

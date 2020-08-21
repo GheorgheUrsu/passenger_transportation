@@ -10,7 +10,6 @@ import com.passengertransportation.demo.mappers.TicketMapper;
 import com.passengertransportation.demo.model.Buss;
 import com.passengertransportation.demo.model.Route;
 import com.passengertransportation.demo.model.Ticket;
-import com.passengertransportation.demo.model.enums.TicketType;
 import com.passengertransportation.demo.repo.BussRepository;
 import com.passengertransportation.demo.repo.RouteRepository;
 import com.passengertransportation.demo.repo.TicketRepository;
@@ -58,11 +57,10 @@ public class TicketServiceImpl implements TicketService {
         updatable.setPassenger(PassengerMapper.INSTANCE.fromDTO(ticketDTO.getPassenger(), new CycleAvoidingMappingContex()));
         updatable.setRoute(RouteMapper.INSTANCE.fromDto(ticketDTO.getRoute(), new CycleAvoidingMappingContex()));
         updatable.setPrice(ticketDTO.getPrice());
-        //TODO from string to enum find a better solution
-        updatable.setTicketType((ticketDTO.getTicketType().equals(TicketType.BUSINESS.toString())) ? TicketType.BUSINESS : TicketType.ECONOM);
-        ticketRepository.save(updatable);
+        updatable.setTicketType(ticketDTO.getTicketType());
+        Ticket persisted = ticketRepository.save(updatable);
 
-        return TicketMapper.INSTANCE.toDTO(updatable, new CycleAvoidingMappingContex());
+        return TicketMapper.INSTANCE.toDTO(persisted, new CycleAvoidingMappingContex());
     }
 
     @Override
@@ -90,5 +88,12 @@ public class TicketServiceImpl implements TicketService {
             }
         }
         return acceptedTickets;
+    }
+
+    @Override
+    public TicketDTO findById(Long ticketID) {
+       Ticket ticket = ticketRepository.findById(ticketID)
+                .orElseThrow(()-> new ApplicationException(ExceptionType.TICKET_NOT_FOUND));
+        return TicketMapper.INSTANCE.toDTO(ticket, new CycleAvoidingMappingContex());
     }
 }

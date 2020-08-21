@@ -5,9 +5,10 @@ import com.passengertransportation.demo.model.Passenger;
 import org.mapstruct.Context;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface PassengerMapper {
     PassengerMapper INSTANCE = Mappers.getMapper(PassengerMapper.class);
 

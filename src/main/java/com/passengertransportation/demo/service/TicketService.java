@@ -14,4 +14,6 @@ public interface TicketService {
     TicketDTO updateTicket(TicketDTO ticketDTO, Long ticketID);
 
     List<TicketDTO> addAllTickets(List<TicketDTO> ticketDTOS);
+
+    TicketDTO findById(Long ticketID);
 }

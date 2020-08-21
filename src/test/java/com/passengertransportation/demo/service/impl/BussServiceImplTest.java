@@ -1,13 +1,8 @@
 package com.passengertransportation.demo.service.impl;
 
 import com.passengertransportation.demo.dto.BussDTO;
-import com.passengertransportation.demo.excepions.ApplicationException;
-import com.passengertransportation.demo.excepions.ExceptionType;
-import com.passengertransportation.demo.mappers.BussMapper;
-import com.passengertransportation.demo.mappers.CycleAvoidingMappingContex;
 import com.passengertransportation.demo.model.Buss;
 import com.passengertransportation.demo.repo.BussRepository;
-import com.sun.xml.bind.v2.model.core.ID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
