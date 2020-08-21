@@ -4,7 +4,6 @@ import com.passengertransportation.demo.dto.BussDTO;
 import com.passengertransportation.demo.service.BussService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/busses")
-@RequiredArgsConstructor
 @Api(value = "busses", description = "CRUD OPERATIONS FOR BUSSES", tags = "BUSSES")
 public class BussController {
 
     private final BussService bussService;
+
+    public BussController(BussService bussService) {
+        this.bussService = bussService;
+    }
 
 
     @GetMapping

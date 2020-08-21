@@ -7,12 +7,10 @@ import com.passengertransportation.demo.mappers.CycleAvoidingMappingContex;
 import com.passengertransportation.demo.mappers.PassengerMapper;
 import com.passengertransportation.demo.model.Passenger;
 import com.passengertransportation.demo.repo.PassengerRepository;
-import com.passengertransportation.demo.repo.TicketRepository;
 import com.passengertransportation.demo.service.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
