@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/routes")
@@ -65,8 +66,8 @@ public class RouteController {
     @GetMapping("/{routeID}/tickets")
     @ApiOperation(value = "GET ALL SOLD TICKETS", notes = "\n" +
             "This function show all sold tickets for a specific route")
-    public List<TicketDTO> findAllSoldTicketByRoute(@PathVariable Long routeID) {
-        return routeService.findAllSoldTicket(routeID);
+    public Set<TicketDTO> findAllSoldTicketByRoute(@PathVariable Long routeID) {
+        return routeService.findAllSoldTicketByBuss(routeID);
     }
 
     @PutMapping("{routeID}/tickets/{removed_ticketID}/{new_ticketID}")
@@ -82,7 +83,7 @@ public class RouteController {
             "This function deletes all tickets for a specific Route")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public List<TicketDTO> deleteAllTickets(@PathVariable Long routeID) {
-        return routeService.deleteAllTickets(routeID);
+        return routeService.deleteAllTicketsByRouteId(routeID);
     }
 
     @DeleteMapping("/{routeID}/tickets/{ticketID}")

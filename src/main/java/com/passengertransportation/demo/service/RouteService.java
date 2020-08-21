@@ -4,6 +4,7 @@ import com.passengertransportation.demo.dto.RouteDTO;
 import com.passengertransportation.demo.dto.TicketDTO;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RouteService {
 
@@ -17,11 +18,11 @@ public interface RouteService {
 
     RouteDTO deleteRouteByID(Long routeID);
 
-    List<TicketDTO> findAllSoldTicket(Long routeId);
+    Set<TicketDTO> findAllSoldTicketByBuss(Long routeId);
 
     TicketDTO updateTicketOnRoute(Long routeID, Long removed_ticketID, TicketDTO newTicketDto);
 
-    List<TicketDTO> deleteAllTickets(Long routeID);
+    List<TicketDTO> deleteAllTicketsByRouteId(Long routeID);
 
     TicketDTO deleteTicketFromRoute(Long routeID, Long ticketID);
 }

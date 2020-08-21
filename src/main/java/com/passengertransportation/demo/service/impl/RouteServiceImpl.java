@@ -7,7 +7,6 @@ import com.passengertransportation.demo.excepions.ExceptionType;
 import com.passengertransportation.demo.mappers.*;
 import com.passengertransportation.demo.model.Route;
 import com.passengertransportation.demo.model.Ticket;
-import com.passengertransportation.demo.model.enums.TicketType;
 import com.passengertransportation.demo.repo.RouteRepository;
 import com.passengertransportation.demo.repo.TicketRepository;
 import com.passengertransportation.demo.service.RouteService;
@@ -39,7 +38,7 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public RouteDTO findByID(Long routeID) {
-        Route route = routeRepository.findById(routeID)
+        final Route route = routeRepository.findById(routeID)
                             .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
         return RouteMapper.INSTANCE.toDTO(route, new CycleAvoidingMappingContex());
     }
@@ -75,14 +74,14 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<TicketDTO> findAllSoldTicket(Long routeId) {
+    public Set<TicketDTO> findAllSoldTicketByBuss(Long routeId) {
        Route route =  routeRepository.findById(routeId)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
 
         return route.getTickets().stream()
                                  .filter(Objects::nonNull)
                                  .map(ticket -> TicketMapper.INSTANCE.toDTO(ticket, new CycleAvoidingMappingContex()))
-                                 .collect(Collectors.toList());
+                                 .collect(Collectors.toSet());
     }
 
     @Override
@@ -107,7 +106,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<TicketDTO> deleteAllTickets(Long routeID) {
+    public List<TicketDTO> deleteAllTicketsByRouteId(Long routeID) {
         routeRepository.findById(routeID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.ROUTE_NOT_FOUND));
 
