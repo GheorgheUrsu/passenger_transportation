@@ -6,12 +6,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/tickets")
+@RequestMapping(value = "/api/v1/tickets")
 @RequiredArgsConstructor
 @Api(value = "ticket", description = "CRUD OPERATIONS FOR TICKETS", tags = "TICKET")
 public class TicketController {
@@ -43,7 +44,7 @@ public class TicketController {
         return ticketService.deleteTicketByID(ticketID);
     }
 
-    @PutMapping("/{ticketID}")
+    @PutMapping(value = "/{ticketID}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "UPDATE TICKET BY ID", notes = "\n" +
             "This function updates a ticket")
     @ResponseStatus(HttpStatus.OK)

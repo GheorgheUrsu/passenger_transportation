@@ -27,7 +27,7 @@ public class SwaggerConfig {
     }
 
     private ApiInfo metaData(){
-        Contact contact = new Contact("Passenger Transportation Demo","", "");
+        Contact contact = new Contact("Ursu Gheorghe","", "gursu@ms3-inc.com");
 
         return new ApiInfo(
                 "Passenger Transportation Demo Documentation",

@@ -90,4 +90,16 @@ public class Route {
     public int hashCode() {
         return Objects.hashCode(getId(), getStartLocation(), getArrivalDestination(), getStartDate(), getArrivalDate());
     }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", startLocation='" + startLocation + '\'' +
+                ", arrivalDestination='" + arrivalDestination + '\'' +
+                ", startDate=" + startDate +
+                ", arrivalDate=" + arrivalDate +
+                ", buss=" + buss +
+                '}';
+    }
 }

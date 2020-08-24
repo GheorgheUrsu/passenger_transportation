@@ -29,7 +29,7 @@ public class Ticket implements Serializable {
     @Column(name = "ticket_type")
     private TicketType ticketType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "route_id", referencedColumnName = "route_id")
     private Route route;
 
