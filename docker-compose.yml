@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+  default:
+    external:
+      name: my-network
+
+services:
+  backend:
+    image: 23082018/my-api
+    depends_on:
+      - db
+    container_name: my-api
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+
+  db:
+    image: mysql:8
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: passengers_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: admin
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=admin --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+    networks:
+      - default
+
+  migration:
+    build: ./docker/db_migration
+    container_name: flyway_migration
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ../sql:/flyway/sql
+    entrypoint: ["bash", "/flyway/bin/wait-for-mysql.sh", "mysqldb", "--", "flyway"]
+    command: -url=jdbc:mysql://mysqldb:3306/passengers_db?serverTimezone=UTC -user=root -password=password migrate
+    depends_on:
+      - db
