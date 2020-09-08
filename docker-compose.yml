@@ -16,30 +16,21 @@ services:
     networks:
       - default
 
+  flyway-service-i:
+    image: boxfuse/flyway
+    command: -url=jdbc:mysql://mysqldb:3306 -schemas=tpassengers_db -user=... -password=... migrate
+    volumes:
+      - "../resources/db/migration:/flyway/sql"
+    depends_on:
+      - db
+
   db:
     image: mysql:8
     container_name: mysqldb
     environment:
-      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD:
       MYSQL_DATABASE: passengers_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: admin
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=admin --execute \"SHOW DATABASES;\""
-      interval: 2s
-      timeout: 20s
-      retries: 10
+      MYSQL_USER:
+      MYSQL_PASSWORD:
     networks:
       - default
-
-  migration:
-    build: ./docker/db_migration
-    container_name: flyway_migration
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-    volumes:
-      - ../sql:/flyway/sql
-    entrypoint: ["bash", "/flyway/bin/wait-for-mysql.sh", "mysqldb", "--", "flyway"]
-    command: -url=jdbc:mysql://mysqldb:3306/passengers_db?serverTimezone=UTC -user=root -password=password migrate
-    depends_on:
-      - db
