@@ -3,11 +3,11 @@ pipeline {
   agent any
     
   stages {
-  
-   stage('build') {
+   stage('Running Junit and Mockito tests...') {
     
     steps {
-        echo 'building the app...'
+        echo 'Running JAVA tests'
+        sh "mvn test"
       }
     }
   }
