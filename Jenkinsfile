@@ -1,11 +1,10 @@
 pipeline {
     agent any
-    tools {
-    def mvnHome = tool name: 'maven-3', type: 'maven'
+    environment {
+        PATH = "C:\Program Files\apache-maven-3.6.2\bin:PATH"
     }
 
     stages {
-
        stage ('Test') {
            steps {
                 echo "JAVA TEST"
