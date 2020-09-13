@@ -1,30 +1,20 @@
 pipeline {
     agent any
-
-    tools {
-              maven 'Maven 3.6.2'
-              jdk 'jdk11'
-          }
-
+    triggers {
+        pollSCM '* * * * *'
+    }
 
     stages {
-        stage ('Initialize') {
+        stage ('Build') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+               sh 'mvn clean'
+               sh 'mvn install'
             }
         }
 
-        stage ('Build') {
+        stage ('Test') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml'
-                }
+                sh 'mvn test'
             }
         }
     }
