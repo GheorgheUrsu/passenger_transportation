@@ -4,6 +4,10 @@ pipeline {
         pollSCM '* * * * *'
     }
 
+    def mvn_version = ''
+
+    withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] )
+
     stages {
         stage ('Build') {
 
@@ -14,7 +18,6 @@ pipeline {
         }
 
         stage ('Test') {
-        //def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
                 sh 'mvn test'
             }
