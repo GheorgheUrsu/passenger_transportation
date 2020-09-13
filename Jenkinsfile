@@ -1,11 +1,13 @@
 pipeline {
     agent any
+    enviroment {
+    def mvnHome = tool name: 'maven-3', type: 'maven'
+    }
 
     stages {
 
        stage ('Test') {
            steps {
-            def mvnHome = tool name: 'maven-3', type: 'maven'
                 echo "JAVA TEST"
                 sh "${mvnHome}/bin/mvn test"
            }
@@ -13,9 +15,8 @@ pipeline {
 
        stage ('Build JAR') {
             steps {
-             def mvnHome = tool name: 'maven-3', type: 'maven'
                echo "Building JAR"
-               sh "mvn -Dskiptests -B clean package"
+               sh "${mvnHome}/bin/mvn -Dskiptests -B clean package"
             }
         }
     }
