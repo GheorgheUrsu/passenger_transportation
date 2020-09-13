@@ -1,20 +1,19 @@
 pipeline {
     agent any
 
+
     stages {
        stage ('Test') {
            steps {
-               withMaven(maven : 'maven-3'){
-                    bat 'mvn test'
-               }
+                echo "JAVA TEST"
+                sh "mvn test"
            }
        }
 
        stage ('Build JAR') {
             steps {
-               withMaven(maven : 'maven-3'){
-                    bat 'mvn -DskipTests -B clean package'
-               }
+               echo "Building JAR"
+               sh "mvn -Dskiptests -B clean package"
             }
         }
     }
