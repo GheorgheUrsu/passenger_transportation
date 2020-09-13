@@ -1,14 +1,19 @@
 pipeline {
     agent any
 
-     environment {
-            MAVEN_HOME = tool('M3')
-        }
-
     stages {
-        stage ('Build') {
+    def mvnHome = tool name: 'maven-3', type: 'maven'
+       stage ('Test') {
+           steps {
+                echo "JAVA TEST"
+                sh "${mvnHome}/bin/mvn test"
+           }
+       }
+
+       stage ('Build JAR') {
             steps {
-               sh '${MAVEN_HOME}/bin/mvn -B verify'
+               echo "Building JAR"
+               sh 'mvn -Dskiptests -B clean package'
             }
         }
     }
