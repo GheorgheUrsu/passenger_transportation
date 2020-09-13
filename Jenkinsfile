@@ -1,10 +1,14 @@
 pipeline {
     agent any
 
+     environment {
+            MAVEN_HOME = tool('M3')
+        }
+
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install'
+               sh '${MAVEN_HOME}/bin/mvn -B verify'
             }
         }
     }
