@@ -4,20 +4,23 @@ pipeline {
         pollSCM '* * * * *'
     }
 
+    tools {
+       maven 'apache-maven-3.0.1'
+     }
+
     stages {
         stage ('Build') {
-         //Get maven home path
-        def mvnHome = tool name: 'maven-3', type: 'maven'
+
             steps {
-               sh "${mvnHome}/bin/mvn clean"
-               sh "${mvnHome}/bin/mvn package"
+               sh 'mvn clean'
+               sh 'mvn install'
             }
         }
 
         stage ('Test') {
-        def mvnHome = tool name: 'maven-3', type: 'maven'
+        //def mvnHome = tool name: 'maven-3', type: 'maven'
             steps {
-                sh "${mvnHome}/bin/mvn test"
+                sh 'mvn test'
             }
         }
     }
