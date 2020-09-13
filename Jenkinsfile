@@ -4,9 +4,6 @@ pipeline {
         pollSCM '* * * * *'
     }
 
-    def mvn_version = ''
-
-    withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] )
 
     stages {
         stage ('Build') {
