@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+      agent { docker 'maven:3-alpine' }
 
     stages {
        stage ('Test') {
@@ -9,12 +9,5 @@ pipeline {
                 sh "mvn test"
            }
        }
-
-       stage ('Build JAR') {
-            steps {
-               echo "Building JAR"
-               sh "mvn -Dskiptests -B clean package"
-            }
-        }
     }
 }
