@@ -40,7 +40,7 @@ pipeline {
                         //bat "docker push 23082018/my-image"
 
                         echo "Creating container"
-                        bat "docker container run --network my-network  --name demo-container -p 8080:8282 -d my-image"
+                        bat "docker container run --network my-network  --name demo-container -p 8282:8282 -d my-image"
 
                         echo "Server is up on PORT: 8282"
                 }
