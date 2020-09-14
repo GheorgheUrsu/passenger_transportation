@@ -58,12 +58,14 @@ class TicketControllerTest {
     @Test
     void createListOfTickets() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
+        List<TicketDTO> dtos = new ArrayList<>();
+        dtos.add(dto);
 
-        when(service.addAllTickets(anyList())).thenReturn(List.of(dto));
+        when(service.addAllTickets(anyList())).thenReturn(dtos);
 
         mockMvc.perform(post("/api/v1/tickets")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(List.of(dto))))
+                .content(mapper.writeValueAsString(dtos)))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$", hasSize(1)));

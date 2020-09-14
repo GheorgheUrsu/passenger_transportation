@@ -1,13 +1,8 @@
 version: '3'
 
-networks:
-  default:
-    external:
-      name: my-network
-
 services:
   backend:
-    image: 23082018/my-api:latest
+    image: 23082018/rest-api
     container_name: service
     restart: on-failure
     depends_on:
@@ -15,11 +10,13 @@ services:
     networks:
       - default
     environment:
-      - DATABASE_HOST=db
+      - DATABASE_HOST=mysqldb
       - DATABASE_USER=root
       - DATABASE_PASSWORD=admin
       - DATABASE_NAME=passengers_db
       - DATABASE_PORT=3306
+    ports:
+    - 8282:8080
 
 
   db:
@@ -34,7 +31,13 @@ services:
       - "/src/main/resources/init.sql:/docker-entrypoint-initdb.d/"
     networks:
       - default
+    ports:
+      - 3306:3306
 
 
+networks:
+  default:
+    external:
+      name: my-network
 
 

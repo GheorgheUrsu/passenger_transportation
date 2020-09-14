@@ -1,7 +1,8 @@
 # Alpine Linux with OpenJDK JRE
-FROM adoptopenjdk/openjdk11:alpine-jre
-
+FROM openjdk:8
 # Copy jar file
 COPY target/*.jar  /opt/demo.jar
+ADD wrapper.sh wrapper.sh
 
-CMD [ "java", "-jar", "/opt/demo.jar"]
+RUN bash -c 'chmod +x /wrapper.sh'
+ENTRYPOINT ["/bin/bash", "/wrapper.sh"]
