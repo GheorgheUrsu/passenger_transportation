@@ -36,6 +36,7 @@ pipeline {
                         bat "docker image build -f Dockerfile -t my-image ."
 
                         echo "Creating image from Dockerfile"
+                        bat "docker login"
                         bat "docker push my-image"
 
                         echo "Creating container"
