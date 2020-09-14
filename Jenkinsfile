@@ -8,5 +8,10 @@ pipeline {
                 bat "mvn test"
            }
        }
+
+       stage ('Build JAR'){
+                echo "Building JAR file"
+                bat "mvn -Dskiptests -B clean package"
+       }
     }
 }
