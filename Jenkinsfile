@@ -1,6 +1,5 @@
 pipeline {
     agent any
-      agent { docker 'maven:3-alpine' }
 
     stages {
        stage ('Test') {
