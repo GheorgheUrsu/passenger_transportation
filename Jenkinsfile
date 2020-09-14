@@ -2,16 +2,6 @@ pipeline {
     agent any
 
     stages {
-       stage("Prepare environment variables") {
-                   steps {
-                       script {
-                           env.appName = readMavenPom().getArtifactId()
-                           env.appVersion = readMavenPom().getVersion()
-                           echo "App name: ${appName} \nApp version: ${appVersion}"
-                       }
-                   }
-               }
-
        stage ('Test') {
            steps {
                 echo "JAVA TEST"
@@ -23,6 +13,18 @@ pipeline {
             steps {
                 echo "Building JAR file"
                 bat "mvn -Dskiptests -B clean package"
+            }
+       }
+
+       stage ("Build DB dockerImage ") {
+            steps {
+            echo "Building docker mySQL image"
+            withCredentials([usernamePassword(credentialsId: 'dockerCredentials', usernameVariable: "dockerLogin",
+                                passwordVariable: "dockerPassword")]) {
+                       bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
+                       bat "docker network create my-network"
+                       bat "docker container run --name mysqldb --network my-network -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=passengers_db -d mysql:8"
+                }
             }
        }
     }
