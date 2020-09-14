@@ -1,0 +1,29 @@
+version: '3'
+
+networks:
+  default:
+    external:
+      name: my-network
+
+services:
+  backend:
+    image: 23082018/rest-api
+    depends_on:
+      - database
+    container_name: game-library-api
+    ports:
+      - "8000:8080"
+    networks:
+      - default
+    
+
+  database:
+    image: mysql
+    container_name: mysql-database
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: passengers_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    networks:
+      - default
