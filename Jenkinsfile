@@ -27,5 +27,23 @@ pipeline {
                 }
             }
        }
+
+       stage ("Build my-api image") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: '	docker-credentials', usernameVariable: "dockerLogin",
+                                                passwordVariable: "dockerPassword")]) {
+                        echo "Creating image from Dockerfile"
+                        bat "docker image build -f Dockerfile -t my-image ."
+
+                        echo "Creating image from Dockerfile"
+                        bat "docker push 23082018/my-image"
+
+                        echo "Creating container"
+                        bat "docker container run --network my-network  --name demo-container -p 8080:8282 -d my-image"
+
+                        echo "Server is up on PORT: 8282"
+                }
+            }
+       }
     }
 }
