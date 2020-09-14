@@ -19,7 +19,7 @@ pipeline {
        stage ("Build DB dockerImage ") {
             steps {
             echo "Building docker mySQL image"
-            withCredentials([usernamePassword(credentialsId: 'dockerCredentials', usernameVariable: "dockerLogin",
+            withCredentials([usernamePassword(credentialsId: '	docker-credentials', usernameVariable: "dockerLogin",
                                 passwordVariable: "dockerPassword")]) {
                        bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
                        bat "docker network create my-network"
