@@ -35,9 +35,9 @@ pipeline {
                         echo "Creating image from Dockerfile"
                         bat "docker image build -f Dockerfile -t my-image ."
 
-                        echo "Creating image from Dockerfile"
-                        bat "docker login"
-                        bat "docker push 23082018/my-image"
+                        //echo "Creating image from Dockerfile"
+                       // bat "docker login"
+                        //bat "docker push 23082018/my-image"
 
                         echo "Creating container"
                         bat "docker container run --network my-network  --name demo-container -p 8080:8282 -d my-image"
