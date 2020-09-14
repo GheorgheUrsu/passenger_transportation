@@ -5,7 +5,7 @@ pipeline {
        stage ('Test') {
            steps {
                 echo "JAVA TEST"
-                sh "mvn test"
+                bat "mvn test"
            }
        }
     }
