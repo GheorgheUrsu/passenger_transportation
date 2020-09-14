@@ -22,7 +22,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: '	docker-credentials', usernameVariable: "dockerLogin",
                                 passwordVariable: "dockerPassword")]) {
                        bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
-                       bat "docker network create my-network"
+                       //bat "docker network create my-network"
                        bat "docker container run --name mysqldb --network my-network -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=passengers_db -d mysql:8"
                 }
             }
