@@ -45,6 +45,11 @@ pipeline {
                 bat "docker-compose up"
             }
         }
+        stage("Newman Tests"){
+            steps{
+                bat"newman run ./newman/newman-tests"
+            }
+        }
     }
 
     post {

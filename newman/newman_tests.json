@@ -1,0 +1,4379 @@
+{
+	"info": {
+		"_postman_id": "83f2c555-df4e-4541-86ee-e3a212521167",
+		"name": "Passenger_Transportation API demo",
+		"description": "This swagger documentation is automatically generated for Passenger Transportation API\n\nContact Support:\n Name: Ursu Gheorghe\n Email: gursu@ms3-inc.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/v1",
+			"item": [
+				{
+					"name": "busses",
+					"item": [
+						{
+							"name": "{buss ID}",
+							"item": [
+								{
+									"name": "GET BUSS BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ab33d508-270c-4a24-843a-6159c066cac2",
+												"exec": [
+													"1\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true,
+										"disableUrlEncoding": false
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses/:bussID?=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses",
+												":bussID"
+											],
+											"query": [
+												{
+													"key": null,
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "bussID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) bussID"
+												}
+											]
+										},
+										"description": "\nThis function get a buss by id"
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "UPDATE BUSS",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "64b1a818-9ccc-4889-8ddb-e1b32220ba7e",
+												"exec": [
+													"pm.test(\"Status code is 201\", function () {\r",
+													"    pm.response.to.have.status(201);\r",
+													"});\r",
+													"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+													"    console.log(response.json());\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"bussType\": \"MINIVAN\",\n    \"id\": \"1\",\n    \"lastInspection\": \"2018-01-01\",\n    \"regNumber\": \"MDA 555\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses/1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses",
+												"1"
+											]
+										},
+										"description": "\nThis function creates a updates a buss"
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Created",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "DELETE BUSS BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2186a696-26cc-4d29-af25-9dcba2dc28d0",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses/:bussID?=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses",
+												":bussID"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "bussID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) bussID"
+												}
+											]
+										},
+										"description": "\nThis function deletes a bus by id"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/busses/:bussID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"busses",
+														":bussID"
+													],
+													"variable": [
+														{
+															"key": "bussID"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "GET ALL BUSSES",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "44cd4734-7eeb-4161-a365-7b49e71680a9",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/busses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"busses"
+									]
+								},
+								"description": "\nThis function get all busses"
+							},
+							"response": [
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "CREATE BUSS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b2ebc5df-c719-4a77-9b8f-20c2dff572c4",
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bussType\": \"MINIVAN\",\n    \"id\": \"1\",\n    \"lastInspection\": \"2019-03-03\",\n    \"regNumber\": \"MDA 666\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/busses?",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"busses"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								},
+								"description": "\nThis function creates a buss"
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/busses",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"busses"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "passengers",
+					"item": [
+						{
+							"name": "{passenger ID}",
+							"item": [
+								{
+									"name": "GET PASSENGER BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3e53b22c-6c8b-490c-aca5-d22f2bd2de70",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.globals.get(\"variable_key\");\r",
+													"pm.test(\"Response time is less than 200ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers/:passengerID?1=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers",
+												":passengerID"
+											],
+											"query": [
+												{
+													"key": "1",
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "passengerID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) passengerID"
+												}
+											]
+										},
+										"description": "\nThis function get passenger by id"
+									},
+									"response": [
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "UPDATE PASSENGER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "749534a1-0ebe-4e19-a372-8767f38c16d4",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+													"    console.log(response.json());\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Content-Type is present\", function () {\r",
+													"    pm.response.to.have.header(\"Content-Type\");\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"birthDate\": \"1990-12-12\",\n    \"id\": \"1\",\n    \"luggageWeight\": \"12\",\n    \"name\": \"Updated\",\n    \"passportData\": \"XVS 123123\"\n}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers/:passengerID?=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers",
+												":passengerID"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "passengerID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) passengerID"
+												}
+											]
+										},
+										"description": "\nThis operation updates a passenger"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Created",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "DELETE PASSENGER BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c091c829-8789-4f26-bede-5d5faa0befcd",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers/:passengerID?=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers",
+												":passengerID"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "passengerID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) passengerID"
+												}
+											]
+										},
+										"description": "\nThis operations deletes passenger with specific ID"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/passengers/:passengerID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"passengers",
+														":passengerID"
+													],
+													"variable": [
+														{
+															"key": "passengerID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "GET ALL PASSENGERS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4e4177e1-16dd-48a9-b2e3-d0650728fca3",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/passengers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"passengers"
+									]
+								},
+								"description": "\nThis operation get all passenger"
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "CREATE PASSENGER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "19781a3a-8bfd-44fa-97e5-455f7bffc3a4",
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"pm.test(\"Successful POST request\", function () {\r",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"birthDate\": \"1990-12-12\",\n    \"id\": \"1\",\n    \"luggageWeight\": \"0\",\n    \"name\": \"NewPassenger\",\n    \"passportData\": \"passportData\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/passengers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"passengers"
+									]
+								},
+								"description": "\nThis function create a passenger"
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/passengers",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"passengers"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "routes",
+					"item": [
+						{
+							"name": "{route ID}",
+							"item": [
+								{
+									"name": "tickets",
+									"item": [
+										{
+											"name": "GET ALL SOLD TICKETS",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID",
+														"tickets"
+													],
+													"variable": [
+														{
+															"id": "65535783-76aa-4827-83e7-60ef90ec5acb",
+															"key": "routeID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) routeID"
+														}
+													]
+												},
+												"description": "\nThis function show all sold tickets for a specific route"
+											},
+											"response": [
+												{
+													"name": "Forbidden",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "Forbidden",
+													"code": 403,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Unauthorized",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not Found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "DELETE ALL TICKETS",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID",
+														"tickets"
+													],
+													"variable": [
+														{
+															"id": "d7edc8e1-fa7b-4039-af0e-8b2f378f88bc",
+															"key": "routeID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) routeID"
+														}
+													]
+												},
+												"description": "\nThis function deletes all tickets for a specific Route"
+											},
+											"response": [
+												{
+													"name": "Forbidden",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "Forbidden",
+													"code": 403,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Unauthorized",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "No Content",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "UPDATE TICKET",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"MINIVAN\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}",
+													"options": {
+														"raw": {}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:removed_ticketID/:new_ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID",
+														"tickets",
+														":removed_ticketID",
+														":new_ticketID"
+													],
+													"variable": [
+														{
+															"id": "a12cb96a-6197-496f-b89e-25ff6e205b66",
+															"key": "routeID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) routeID"
+														},
+														{
+															"id": "496ff5d6-b91c-4c27-bc2b-c58b1d7b349c",
+															"key": "removed_ticketID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) removed_ticketID"
+														},
+														{
+															"key": "new_ticketID",
+															"value": ""
+														}
+													]
+												},
+												"description": "\nThis function updates a ticket"
+											},
+											"response": [
+												{
+													"name": "Created",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:removed_ticketID/:new_ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":removed_ticketID",
+																":new_ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "removed_ticketID"
+																},
+																{
+																	"key": "new_ticketID"
+																}
+															]
+														}
+													},
+													"status": "Created",
+													"code": 201,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Not Found",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:removed_ticketID/:new_ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":removed_ticketID",
+																":new_ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "removed_ticketID"
+																},
+																{
+																	"key": "new_ticketID"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Unauthorized",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:removed_ticketID/:new_ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":removed_ticketID",
+																":new_ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "removed_ticketID"
+																},
+																{
+																	"key": "new_ticketID"
+																}
+															]
+														}
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Forbidden",
+													"originalRequest": {
+														"method": "PUT",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+														},
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:removed_ticketID/:new_ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":removed_ticketID",
+																":new_ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "removed_ticketID"
+																},
+																{
+																	"key": "new_ticketID"
+																}
+															]
+														}
+													},
+													"status": "Forbidden",
+													"code": 403,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										},
+										{
+											"name": "DELETE A TICKET",
+											"request": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"id": "c44a3f2e-56d3-4bcf-8cf2-d1451e0af5e9",
+															"key": "routeID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) routeID"
+														},
+														{
+															"id": "2623794b-1758-499d-87fb-719767c66aa2",
+															"key": "ticketID",
+															"value": "<long>",
+															"type": "string",
+															"description": "(Required) ticketID"
+														}
+													]
+												},
+												"description": "\nThis function deletes a ticket from a specific route"
+											},
+											"response": [
+												{
+													"name": "No Content",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "ticketID"
+																}
+															]
+														}
+													},
+													"status": "No Content",
+													"code": 204,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "*/*"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Forbidden",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "ticketID"
+																}
+															]
+														}
+													},
+													"status": "Forbidden",
+													"code": 403,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												},
+												{
+													"name": "Unauthorized",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/api/v1/routes/:routeID/tickets/:ticketID",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"api",
+																"v1",
+																"routes",
+																":routeID",
+																"tickets",
+																":ticketID"
+															],
+															"variable": [
+																{
+																	"key": "routeID"
+																},
+																{
+																	"key": "ticketID"
+																}
+															]
+														}
+													},
+													"status": "Unauthorized",
+													"code": 401,
+													"_postman_previewlanguage": "text",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "text/plain"
+														}
+													],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "FIND ROUTE BY ID",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes",
+												":routeID"
+											],
+											"variable": [
+												{
+													"id": "9b5213db-3373-456c-a107-962af5b47ca5",
+													"key": "routeID",
+													"value": "<long>",
+													"type": "string",
+													"description": "(Required) routeID"
+												}
+											]
+										},
+										"description": "\nThis function finds route with specific ID"
+									},
+									"response": [
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "UPDATE ROUTE WITH ID",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"arrivalDate\": \"<string>\",\n    \"arrivalDestination\": \"<string>\",\n    \"buss\": {\n        \"bussType\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"lastInspection\": \"<string>\",\n        \"regNumber\": \"<string>\"\n    },\n    \"id\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"startLocation\": \"<string>\"\n}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes",
+												":routeID"
+											],
+											"variable": [
+												{
+													"id": "db3d9539-9725-446e-a7f9-d2b238427f1b",
+													"key": "routeID",
+													"value": "<long>",
+													"type": "string",
+													"description": "(Required) routeID"
+												}
+											]
+										},
+										"description": "\nThis function updates route with specific ID"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Created",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "DELETE A ROUTE",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes",
+												":routeID"
+											],
+											"variable": [
+												{
+													"id": "ea5458ce-be3f-4253-8d32-35679a669ae5",
+													"key": "routeID",
+													"value": "<long>",
+													"type": "string",
+													"description": "(Required) routeID"
+												}
+											]
+										},
+										"description": "\nThis function deletes a route with specific routeID"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/routes/:routeID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"routes",
+														":routeID"
+													],
+													"variable": [
+														{
+															"key": "routeID"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "GET ALL ROUTES",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/routes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"routes"
+									]
+								},
+								"description": "\nThis function gets all the routes"
+							},
+							"response": [
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "CREATE A ROUTE",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"arrivalDate\": \"<string>\",\n    \"arrivalDestination\": \"<string>\",\n    \"buss\": {\n        \"bussType\": \"MINIVAN\",\n        \"id\": \"<integer>\",\n        \"lastInspection\": \"<string>\",\n        \"regNumber\": \"<string>\"\n    },\n    \"id\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"startLocation\": \"<string>\"\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/routes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"routes"
+									]
+								},
+								"description": "\nThis function create route"
+							},
+							"response": [
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/routes",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"routes"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "tickets",
+					"item": [
+						{
+							"name": "{ticket ID}",
+							"item": [
+								{
+									"name": "FIND TICKET BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f039f8f6-c016-461c-ace5-d46f909ecf59",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+													"    console.log(response.json());\r",
+													"});\r",
+													"var jsonObject = xml2Json(responseBody);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets/:ticketID?=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets",
+												":ticketID"
+											],
+											"query": [
+												{
+													"key": null,
+													"value": "1"
+												}
+											],
+											"variable": [
+												{
+													"key": "ticketID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) ticketID"
+												}
+											]
+										},
+										"description": "\nThis function find ticket by id"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "UPDATE TICKET BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "0552cf74-635f-4caf-8bc6-d3ca588007c1",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"1\",\n    \"passenger\": {\n        \"birthDate\": \"1998-05-05\",\n        \"id\": \"2\",\n        \"luggageWeight\": \"10\",\n        \"name\": \"Updated\",\n        \"passportData\": \"UPD 001\"\n    },\n    \"price\": \"99\",\n    \"route\": {\n        \"arrivalDate\":\"2020-09-10 12:00\",\n        \"arrivalDestination\": \"Munchen\",\n        \"buss\": {\n            \"bussType\": \"MINIVAN\",\n            \"id\": \"1\",\n            \"lastInspection\": \"2019-01-01\",\n            \"regNumber\": \"DE 0999\"\n        },\n        \"id\": \"1\",\n        \"startDate\": \"2020-09-09 06:00\",\n        \"startLocation\": \"Chisinau\"\n    },\n    \"ticketType\": \"ECONOM\"\n}",
+											"options": {
+												"raw": {}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets",
+												":ticketID"
+											],
+											"variable": [
+												{
+													"key": "ticketID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) ticketID"
+												}
+											]
+										},
+										"description": "\nThis function updates a ticket"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Created",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Not Found",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"<integer>\",\n    \"passenger\": {\n        \"birthDate\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"luggageWeight\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"passportData\": \"<string>\"\n    },\n    \"price\": \"<integer>\",\n    \"route\": {\n        \"arrivalDate\": \"<string>\",\n        \"arrivalDestination\": \"<string>\",\n        \"buss\": {\n            \"bussType\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"lastInspection\": \"<string>\",\n            \"regNumber\": \"<string>\"\n        },\n        \"id\": \"<integer>\",\n        \"startDate\": \"<string>\",\n        \"startLocation\": \"<string>\"\n    },\n    \"ticketType\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "DELETE TICKET BY ID",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "bcbcd3eb-3709-4250-9fc2-417b850e40ca",
+												"exec": [
+													"pm.test(\"Status code is 204\", function () {\r",
+													"    pm.response.to.have.status(204);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets",
+												":ticketID"
+											],
+											"variable": [
+												{
+													"key": "ticketID",
+													"value": "1",
+													"type": "string",
+													"description": "(Required) ticketID"
+												}
+											]
+										},
+										"description": "\nThis function delete a ticket by id"
+									},
+									"response": [
+										{
+											"name": "Forbidden",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "Unauthorized",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										},
+										{
+											"name": "No Content",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/v1/tickets/:ticketID",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"tickets",
+														":ticketID"
+													],
+													"variable": [
+														{
+															"key": "ticketID"
+														}
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "GET ALL SOLD TICKETS",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c54e50b2-66bb-45f4-9648-93823ef5ec77",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/tickets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"tickets"
+									]
+								},
+								"description": "\nThis function get all sold ticket"
+							},
+							"response": [
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "CREATE ONE OR MORE TICKETS",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    {\n        \"id\": \"1\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"1\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"MINIVAN\",\n                \"id\": \"1\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"1\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    },\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    }\n]",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/tickets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"tickets"
+									]
+								},
+								"description": "\nThis operations create one or more tickets"
+							},
+							"response": [
+								{
+									"name": "Created",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    },\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    }\n]"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Forbidden",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    },\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    }\n]"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    },\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    }\n]"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Unauthorized",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    },\n    {\n        \"id\": \"<integer>\",\n        \"passenger\": {\n            \"birthDate\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"luggageWeight\": \"<integer>\",\n            \"name\": \"<string>\",\n            \"passportData\": \"<string>\"\n        },\n        \"price\": \"<integer>\",\n        \"route\": {\n            \"arrivalDate\": \"<string>\",\n            \"arrivalDestination\": \"<string>\",\n            \"buss\": {\n                \"bussType\": \"<string>\",\n                \"id\": \"<integer>\",\n                \"lastInspection\": \"<string>\",\n                \"regNumber\": \"<string>\"\n            },\n            \"id\": \"<integer>\",\n            \"startDate\": \"<string>\",\n            \"startLocation\": \"<string>\"\n        },\n        \"ticketType\": \"<string>\"\n    }\n]"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/v1/tickets",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"tickets"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8b67c713-6e2b-4f40-85f5-bff2b73bcb4c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "10d70650-2ca1-49b0-a14a-1b654ba1b89c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c7b9aa31-e707-43e9-85f1-4a769c14de7a",
+			"key": "baseUrl",
+			"value": "localhost:8080/"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
