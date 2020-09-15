@@ -43,7 +43,7 @@ pipeline {
 
                 script{
                     projectArtifactId = readMavenPom().getArtifactId()
-                    projectVersion = readMavenPom().getProjectVersion()
+                    projectVersion = readMavenPom().getModelVersion()
                 }
 
                 echo "Building ${projectArtifactId}:${projectVersion}"
