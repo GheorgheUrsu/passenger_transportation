@@ -7,19 +7,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PassengerTransportationApplication implements CommandLineRunner {
+public class PassengerTransportationApplication implements CommandLineRunner  {
 
 	@Autowired
-	AddConfigBean addConfigBean;
-
-	@Override
-	public void run(String... args) throws Exception {
-		System.out.printf(addConfigBean.getDb_url());
-	}
+	private AddConfigBean addConfigBean;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PassengerTransportationApplication.class, args);
 
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println(addConfigBean.getDb_url());
+	}
 }

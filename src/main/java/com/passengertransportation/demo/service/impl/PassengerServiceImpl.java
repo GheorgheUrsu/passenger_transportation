@@ -32,7 +32,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public PassengerDTO deletePassengerById(Long passengerID) {
-        Passenger deletable = passengerRepository.findById(passengerID)
+        final Passenger deletable = passengerRepository.findById(passengerID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
         passengerRepository.deleteById(passengerID);
 
@@ -41,7 +41,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public PassengerDTO updatePassenger(Long passengerID, PassengerDTO passengerDTO) {
-        Passenger updatable = passengerRepository.findById(passengerID)
+        final Passenger updatable = passengerRepository.findById(passengerID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
         updatable.setLuggageWeight(passengerDTO.getLuggageWeight());
         updatable.setName(passengerDTO.getName());
@@ -54,14 +54,14 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public PassengerDTO findPassengerByID(Long passengerID) {
-        Passenger passenger = passengerRepository.findById(passengerID)
+        final Passenger passenger = passengerRepository.findById(passengerID)
                 .orElseThrow(() -> new ApplicationException(ExceptionType.PASSENGER_NOT_FOUND));
         return PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex());
     }
 
     @Override
     public PassengerDTO createPassenger(PassengerDTO passengerDTO) {
-        Passenger passenger = PassengerMapper.INSTANCE.fromDTO(passengerDTO, new CycleAvoidingMappingContex());
+        final Passenger passenger = PassengerMapper.INSTANCE.fromDTO(passengerDTO, new CycleAvoidingMappingContex());
         passengerRepository.save(passenger);
 
         return PassengerMapper.INSTANCE.toDTO(passenger, new CycleAvoidingMappingContex());
