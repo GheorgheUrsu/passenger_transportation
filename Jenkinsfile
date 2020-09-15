@@ -60,6 +60,18 @@ pipeline {
                 bat "mvn -Dskiptests -B clean package"
             }
         }
+        stage("Build image"){
+            steps {
+                echo "Building service image and pushing it to DockerHub"
+                    withCredentials([usernamePassword(credentialsId: 'dockerCredentials', usernameVariable: "dockerLogin",
+                        passwordVariable: "dockerPassword")]) {
+
+                            bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
+                            bat "docker image build -t ${dockerLogin}/${projectVersion}"
+                            bat "docker pus ${dockerLogin}/${projectVersion}"
+                        }
+            }
+        }
     }
 
     post {
