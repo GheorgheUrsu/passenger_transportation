@@ -25,7 +25,7 @@ pipeline {
         }
         stage("Build JAR file"){
             steps{
-                bat "mvn -Dskiptests -B clean package"
+                bat "mvn install -Dmaven.test.skip=true"
             }
         }
         stage("Build image"){
