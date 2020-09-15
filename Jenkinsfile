@@ -42,14 +42,11 @@ pipeline {
             steps{
 
                 script{
-                    def pom = readMavenPom: 'pom.xml'
-                    projectArtifactId = pom.getArtifactId()
-                    projectGroupId = pom.getGroupId()
-                    projectVersion = pom.getVersion()
-                    projectName = pom.getName()
+                    projectArtifactId = readMavenPom().getArtifactId()
+                    projectVersion = readMavenPom().getProjectVersion()
                 }
 
-                echo "Buildin ${projectArtifactId}:${projectVersion}"
+                echo "Building ${projectArtifactId}:${projectVersion}"
             }
         }
         stage("Test"){
