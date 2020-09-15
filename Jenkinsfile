@@ -38,10 +38,30 @@ pipeline {
     }
 
     stages {
+        stage("Read from Maven POM"){
+            steps{
+                bat "mvn -N help:effective-pom -Doutput=target/pom-effective.xml"
+
+                script{
+                    pom = readMavenPom(file: 'target/pom-effective.xml')
+                    projectArtifactId = pom.getArtifactId()
+                    projectGroupId = pom.getGroupId()
+                    projectVersion = pom.getVersion()
+                    projectName = pom.getName()
+                }
+
+                echo "Buildin ${projectArtifactId}:${projectVersion}"
+            }
+        }
         stage("Test"){
             steps {
                 bat "mvn -version"
                 bat "mvn test"
+            }
+        }
+        stage("Build JAR file"){
+            steps{
+                bat "mvn -Dskiptests -B clean package"
             }
         }
     }
