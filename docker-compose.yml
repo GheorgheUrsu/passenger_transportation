@@ -1,29 +1,74 @@
-version: '3'
+#version: '3'
+#
+#services:
+#  backend:
+#    image: 23082018/rest-api
+#    container_name: service
+#    depends_on:
+#      - db
+#    networks:
+#      - default
+#    environment:
+#      - DATABASE_HOST=mysqldb
+#      - DATABASE_USER=root
+#      - DATABASE_PASSWORD=admin
+#      - DATABASE_NAME=passengers_db
+#      - DATABASE_PORT=3306
+#    ports:
+#    - 8282:8282
+#
+#
+#  db:
+#    image: mysql
+#    container_name: mysqldb
+#    environment:
+#      MYSQL_ROOT_PASSWORD: admin
+#      MYSQL_DATABASE: passengers_db
+#      MYSQL_USER: root
+#      MYSQL_PASSWORD: admin
+#    volumes:
+#      - "/src/main/resources/init.sql:/docker-entrypoint-initdb.d/"
+#    networks:
+#      - default
+#    ports:
+#      - 3306:3306
+#
+#
+#networks:
+#  default:
+#    external:
+#      name: my-network
+#
 
-networks:
-  default:
-    external:
-      name: my-network
-
+version: '3.7'
 services:
-  backend:
-    image: 23082018/rest-api
-    depends_on:
-      - database
-    container_name: game-library-api
-    ports:
-      - "8000:8080"
-    networks:
-      - default
-    
-
-  database:
+  db:
     image: mysql
-    container_name: mysql-database
+    container_name: mysqldb
+    restart: always
+    volumes:
+      - "/src/main/resources/init.sql:/docker-entrypoint-initdb.d/"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: passengers_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    networks:
-      - default
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=passengers_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=admin
+    ports:
+    - 3306:3306
+
+  service:
+    image: 23082018/rest-api
+    container_name: service
+    depends_on:
+      - db
+    ports:
+      - 8282:8282
+    environment:
+      - DATABASE_HOST=mysqldb
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=passengers_db
+      - DATABASE_PORT=3306
+
+
+
