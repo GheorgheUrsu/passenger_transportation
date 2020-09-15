@@ -42,7 +42,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                bat "docker-compose up"
+                bat "docker-compose up --detach"
             }
         }
         stage("Newman Tests"){
