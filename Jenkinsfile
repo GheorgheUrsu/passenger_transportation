@@ -67,7 +67,7 @@ pipeline {
                         passwordVariable: "dockerPassword")]) {
 
                             bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
-                            bat "docker image build -t ${dockerLogin}/${projectVersion}"
+                            bat "docker image build -t ${dockerLogin}/${projectVersion} ."
                             bat "docker pus ${dockerLogin}/${projectVersion}"
                         }
             }
