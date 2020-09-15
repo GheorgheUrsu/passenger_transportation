@@ -63,7 +63,7 @@ pipeline {
         stage("Build image"){
             steps {
                 echo "Building service image and pushing it to DockerHub"
-                    withCredentials([usernamePassword(credentialsId: 'dockerCredentials', usernameVariable: "dockerLogin",
+                    withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: "dockerLogin",
                         passwordVariable: "dockerPassword")]) {
 
                             bat "docker login -u ${dockerLogin} -p ${dockerPassword}"
