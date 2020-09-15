@@ -40,10 +40,9 @@ pipeline {
     stages {
         stage("Read from Maven POM"){
             steps{
-                bat "mvn -N help:effective-pom -Doutput=target/pom-effective.xml"
 
                 script{
-                    pom = readMavenPom(file: 'target/pom-effective.xml')
+                    def pom = readMavenPom: 'pom.xml'
                     projectArtifactId = pom.getArtifactId()
                     projectGroupId = pom.getGroupId()
                     projectVersion = pom.getVersion()
