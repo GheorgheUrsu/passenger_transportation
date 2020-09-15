@@ -40,6 +40,11 @@ pipeline {
                         }
             }
         }
+        stage("Deploy"){
+            steps{
+                bat "docker-compose up"
+            }
+        }
     }
 
     post {
