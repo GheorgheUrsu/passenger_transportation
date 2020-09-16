@@ -12,7 +12,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=admin
     ports:
-    - 5432:5432
+    - 3306:3306
 
   service:
     image: 23082018/rest-api
@@ -26,7 +26,7 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASSWORD=admin
       - DATABASE_NAME=passengers_db
-      - DATABASE_PORT=5432
+      - DATABASE_PORT=3306
 
 
 
