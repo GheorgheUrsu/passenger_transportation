@@ -8,12 +8,10 @@ pipeline {
     stages {
         stage("Read from Maven POM"){
             steps{
-
                 script{
                     projectArtifactId = readMavenPom().getArtifactId()
                     projectVersion = readMavenPom().getModelVersion()
                 }
-
                 echo "Building ${projectArtifactId}:${projectVersion}"
             }
         }
@@ -43,11 +41,22 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose up --detach"
+                timeout(time: 60, unit: 'SECONDS') {
+                    waitUntil(initialRecurrencePeriod: 2000) {
+                        script {
+                            def result =
+                                bat script : "curl --silent --output /dev/null http://localhost:8282/api/v1/routes",
+                                returnStatus: true
+                            return (result == 0)
+                        }
+                    }
+                }
             }
         }
         stage("Newman Tests"){
             steps{
-                bat"newman run ./newman/newman-tests"
+                //bat "npm install"
+                bat "newman run ./newman/newman-tests"
             }
         }
     }
