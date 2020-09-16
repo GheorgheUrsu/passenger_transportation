@@ -21,7 +21,6 @@ import java.util.Set;
 public class RouteController {
 
     private final RouteService routeService;
-    private final TicketService ticketService;
 
     @GetMapping
     @ApiOperation(value = "GET ALL ROUTES", notes = "\n" +

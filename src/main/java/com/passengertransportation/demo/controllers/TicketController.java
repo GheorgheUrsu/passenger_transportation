@@ -19,7 +19,6 @@ public class TicketController {
 
     private final TicketService ticketService;
 
-
     @PostMapping
     @ApiOperation(value = "CREATE ONE OR MORE TICKETS", notes = "\n" +
             "This operations create one or more tickets")
