@@ -56,7 +56,7 @@ pipeline {
         }
         stage("Newman Tests"){
             steps{
-                bat "node newman run newman/newman_tests.json"
+                bat "newman run newman/newman_tests.json"
             }
         }
     }
