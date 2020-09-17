@@ -4,9 +4,9 @@ pipeline {
     tools {
         maven "3.6.2"
     }
-   //options {
-   //    disableConcurrentBuilds()
-   //}
+    options {
+        disableConcurrentBuilds()
+    }
 
     stages {
         stage("Read from Maven POM"){
@@ -48,22 +48,13 @@ pipeline {
             }
         }
         stage("Newman Tests"){
-            steps {
-                script {
-                    dir("${JENKINS_HOME}/workspace/myproject") {
-                        bat 'newman run "./Collections/my_collection.postman_collection.json" --reporters cli,junit,htmlextra --reporter-junit-export "newman_result.xml" --reporter-htmlextra-export "newman_result.html"'
-                        junit "*.xml"
-                    }
-                }
-            publishHTML target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: '.',
-                        reportFiles: 'newman_result.html',
-                        reportName: 'Newman HTML Reporter']
+            steps{
+             //sleep(time: 60, unit:'SECONDS')
+             echo "Running newman tests"
+             bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
         }
+    }
     post {
         always {
             cleanWs()
