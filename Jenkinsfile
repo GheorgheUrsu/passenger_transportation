@@ -1,9 +1,12 @@
 pipeline {
     agent any
 
-    tools{
+    tools {
         maven "3.6.2"
     }
+   //options {
+   //    disableConcurrentBuilds()
+   //}
 
     stages {
         stage("Read from Maven POM"){
@@ -46,16 +49,7 @@ pipeline {
         }
         stage("Newman Tests"){
             steps{
-                timeout(time: 60, unit: 'SECONDS') {
-                   waitUntil {
-                       script{
-                           def r = bat script: "curl  -s --output /dev/null  http://localhost:8080/api/v1/routes",
-                           returnStatus: true
-                           return (r == 0);
-                           echo r;
-                       }
-                   }
-                }
+             sleep(time: 60, unit:'SECONDS')
              echo "Running newman tests"
              bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
