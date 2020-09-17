@@ -48,12 +48,13 @@ pipeline {
             }
         }
         stage("Newman Tests"){
-            steps{
-                dir("${JENKINS_HOME}/workspace/myproject") {
-                bat 'newman run "./Collections/my_collection.postman_collection.json" --reporters cli,junit,htmlextra --reporter-junit-export "newman_result.xml" --reporter-htmlextra-export "newman_result.html"'
-                junit "*.xml"
+            steps {
+                script {
+                    dir("${JENKINS_HOME}/workspace/myproject") {
+                    bat 'newman run "./Collections/my_collection.postman_collection.json" --reporters cli,junit,htmlextra --reporter-junit-export "newman_result.xml" --reporter-htmlextra-export "newman_result.html"'
+                    junit "*.xml"
+                    }
                 }
-            }
             publishHTML target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
@@ -61,8 +62,8 @@ pipeline {
                         reportDir: '.',
                         reportFiles: 'newman_result.html',
                         reportName: 'Newman HTML Reporter'
+            }
         }
-    }
     post {
         always {
             cleanWs()
