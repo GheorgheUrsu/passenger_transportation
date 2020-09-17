@@ -48,7 +48,7 @@ pipeline {
             steps{
                 waitUntil {
                     script{
-                        def r = bat script: "curl -s --head  --request GET  localhost:8080/api/v1/routes", returnStdout: true
+                        def r = bat script: "curl --write-out '%{http_code}' -s --output /dev/null  localhost:8080/api/v1/routes", returnStdout: true
                         return (r == 200);
                     }
                 }
