@@ -49,7 +49,7 @@ pipeline {
             timeout(5) {
                 waitUntil {
                    script {
-                     def r = sh script: 'curl --silent --output /dev/null http://localhost:8080/api/v1/routes', returnStdout: true
+                     def r = bat script: 'curl --silent --output /dev/null http://localhost:8080/api/v1/routes', returnStdout: true
                      return (r == 0);
                    }
                 }
