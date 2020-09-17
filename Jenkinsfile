@@ -41,6 +41,7 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
+                echo "Server is fully up and running"
             }
         }
         stage("Newman Tests"){
