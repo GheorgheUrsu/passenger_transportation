@@ -46,11 +46,15 @@ pipeline {
         }
         stage("Newman Tests"){
             steps{
-                waitUntil {
-                    script{
-                        def r = bat script: "curl --write-out '%{http_code}' -s --output /dev/null  http://localhost:8080/api/v1/routes", returnStdout: true
-                        return (r == 200);
-                    }
+                timeout(time: 60, unit: 'SECONDS') {
+                   waitUntil {
+                       script{
+                           def r = bat script: "curl  -s --output /dev/null  http://localhost:8080/api/v1/routes",
+                           returnStatus: true
+                           return (r == 0);
+                           echo r;
+                       }
+                   }
                 }
              echo "Running newman tests"
              bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
