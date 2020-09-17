@@ -49,7 +49,7 @@ pipeline {
             timeout(240) {
                 waitUntil {
                     script{
-                        bat "curl -s --head  --request GET  localhost:8080/api/v1/routes | grep '200'"
+                        bat "curl -s --head  --request GET  localhost:8080/api/v1/routes | findstr '200'"
                         return true;
                     }
                 }
