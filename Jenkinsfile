@@ -46,7 +46,7 @@ pipeline {
         }
         stage("Newman Tests"){
             steps{
-            timeout(5) {
+            timeout(30) {
                 waitUntil {
                    script {
                      def r = bat script: 'curl --silent --output /dev/null http://localhost:8080/api/v1/routes', returnStdout: true
