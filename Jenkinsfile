@@ -47,7 +47,7 @@ pipeline {
         stage("Newman Tests"){
             steps{
                 echo "Running newman tests"
-                bat "newman run https://www.getpostman.com/collections/d7face1c1a7588dbf9f6"
+                bat "newman run ./newman/newman_test.json -r cli"
             }
         }
     }
