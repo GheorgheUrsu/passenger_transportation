@@ -58,7 +58,7 @@ pipeline {
                 bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
         }
-
+    }
     post {
         always {
             cleanWs()
