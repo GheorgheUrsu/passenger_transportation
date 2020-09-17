@@ -41,21 +41,21 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
-                    timeout(240) {
-                        waitUntil {
-                            script{
-                                bat "curl -s --head  --request GET  localhost:8080/api/v1/routes | grep '200'"
-                                return true;
-                            }
-                        }
-                    }
                 echo "Server is fully up and running"
             }
         }
         stage("Newman Tests"){
             steps{
-                echo "Running newman tests"
-                bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
+            timeout(240) {
+                waitUntil {
+                    script{
+                        bat "curl -s --head  --request GET  localhost:8080/api/v1/routes | grep '200'"
+                        return true;
+                    }
+                }
+            }
+             echo "Running newman tests"
+             bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
         }
     }
