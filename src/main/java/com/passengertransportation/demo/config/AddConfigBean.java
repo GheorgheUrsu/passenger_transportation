@@ -24,5 +24,6 @@ public class AddConfigBean {
     private String db_password;
     @Value("${db_name}")
     private String db_name;
-
+    @Value("${server_port}")
+    private String server_port;
 }
