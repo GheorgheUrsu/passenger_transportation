@@ -41,15 +41,15 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
-                timeout(time: 300, unit: 'SECONDS') {
-                                    waitUntil(initialRecurrencePeriod: 2000) {
-                                        script {
-                                            def result =
-                                                sh script: "curl --silent --output /dev/null http://localhost:8080/api/v1/routes",
-                                                returnStatus: true
-                                            return (result == 0)
-                                        }
-                                    }
+                timeout(time: 600, unit: 'SECONDS'){
+                    waitUntil(initialRecurrencePeriod: 2000){
+                        script{
+                            def result =
+                                bat script = "curl --silent --output /dev/null http://localhost:8080/api/v1/routes",
+                                returnStatus: true
+                             return (result == 0)
+                        }
+                    }
                 }
                 echo "Server is fully up and running"
             }
