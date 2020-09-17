@@ -41,19 +41,16 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
+                waitUntil {
+                    script {
+                      def r = bat script: "curl --silent --output /dev/null http://localhost:8080/api/v1/routes", returnStatus: true
+                      return (r == 0);
+                    }
                 echo "Server is fully up and running"
             }
         }
         stage("Newman Tests"){
             steps{
-            timeout(30) {
-                waitUntil {
-                   script {
-                     def r = bat script: 'curl --silent --output /dev/null http://localhost:8080/api/v1/routes', returnStdout: true
-                     return (r == 0);
-                   }
-                }
-            }
                 echo "Running newman tests"
                 bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
