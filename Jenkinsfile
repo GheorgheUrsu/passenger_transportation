@@ -46,8 +46,8 @@ pipeline {
         }
         stage("Newman Tests"){
             steps{
-                echo "Should be newman newman_tests"
-                //bat "newman run newman/newman_tests.json"
+                echo "Running newman tests"
+                bat "newman run newman/newman_tests.json"
             }
         }
     }
