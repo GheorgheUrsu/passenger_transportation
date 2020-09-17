@@ -47,7 +47,7 @@ pipeline {
         stage("Newman Tests"){
             steps{
                 echo "Running newman tests"
-                bat "newman run ./newman/newman_test.json -r cli"
+                bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
         }
     }
