@@ -61,7 +61,7 @@ pipeline {
                         keepAll: true,
                         reportDir: '.',
                         reportFiles: 'newman_result.html',
-                        reportName: 'Newman HTML Reporter'
+                        reportName: 'Newman HTML Reporter']
             }
         }
     post {
