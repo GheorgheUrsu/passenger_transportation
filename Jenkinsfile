@@ -44,8 +44,8 @@ pipeline {
                     timeout(240) {
                         waitUntil {
                             script{
-                                def r = bat script: "curl --silent --output /dev/null http://localhost:8080/api/v1/routes", returnStatus: true
-                                return (r == 0);
+                                bat "curl -s --head  --request GET  localhost:8080/api/v1/routes | grep '200'"
+                                return true;
                             }
                         }
                     }
