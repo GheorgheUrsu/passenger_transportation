@@ -12,7 +12,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=admin
     ports:
-    - 3306:3306
+    - 5432:3306
 
   service:
     image: 23082018/rest-api
