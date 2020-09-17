@@ -40,7 +40,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-                bat "docker-compose up --detach"
+                bat "docker-compose up"
     //           timeout(time: 120, unit: 'SECONDS') {
     //               waitUntil(initialRecurrencePeriod: 2000) {
     //                   script {
