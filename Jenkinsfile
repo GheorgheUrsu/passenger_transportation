@@ -43,8 +43,10 @@ pipeline {
                 bat "docker-compose --file docker-compose.yml up --detach"
                     timeout(240) {
                         waitUntil {
-                              def r = bat script: "curl --silent --output /dev/null http://localhost:8080/api/v1/routes", returnStatus: true
-                              return (r == 0);
+                            script{
+                                def r = bat script: "curl --silent --output /dev/null http://localhost:8080/api/v1/routes", returnStatus: true
+                                return (r == 0);
+                            }
                         }
                     }
                 echo "Server is fully up and running"
