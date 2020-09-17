@@ -41,18 +41,11 @@ pipeline {
         stage("Deploy"){
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
-                    def response
-                    timeout(30) {
+                    timeout(240) {
                         waitUntil {
-                            response = bat(
-                                script: 'curl http://localhost:8080/api/v1/routes | grep "\"result\":\"SUCCESS\""',
-                                returnStatus: true
-                            )
-                            return (response == 0)
+                              def r = bat script: 'curl --silent --output /dev/null http://localhost:8080/api/v1/routes', returnStatus: true
+                              return (r == 0);
                         }
-                    }
-                    if (response != 0) {
-                        build.result = 'ERROR'
                     }
                 echo "Server is fully up and running"
             }
