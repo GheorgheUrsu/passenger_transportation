@@ -47,10 +47,6 @@ pipeline {
         }
     }
     post {
-        success {
-            echo "Newman tests..."
-            bat "newman run newman/newman_tests.json --disable-unicode"
-        }
         always {
             cleanWs()
         }
