@@ -4,9 +4,6 @@ pipeline {
     tools {
         maven "3.6.2"
     }
-    options {
-        disableConcurrentBuilds()
-    }
 
     stages {
         stage("Read from Maven POM"){
@@ -51,11 +48,12 @@ pipeline {
             steps{
              //sleep(time: 60, unit:'SECONDS')
              echo "Running newman tests"
-             bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
+             bat "newman -v"
+             //bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
             }
         }
     }
-    post {
+    post {+
         always {
             cleanWs()
         }
