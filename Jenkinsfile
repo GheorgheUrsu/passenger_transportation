@@ -42,18 +42,15 @@ pipeline {
             steps{
                 bat "docker-compose --file docker-compose.yml up --detach"
                 echo "Server is fully up and running"
+
             }
         }
-        stage("Newman Tests"){
-            steps{
-             //sleep(time: 60, unit:'SECONDS')
-             echo "Running newman tests"
-             bat "newman -v"
-             //bat "newman run ./newman/newman_test.json --reporters cli,json --reporter-junit-export newman/report.xml"
-            }
-        }
-    }
+
     post {
+        success {
+            echo "Newman tests..."
+            bat "newman run newman/newman_tests.json --disable-unicode"
+        }
         always {
             cleanWs()
         }
